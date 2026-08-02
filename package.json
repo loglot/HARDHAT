@@ -1,0 +1,24 @@
+{
+  "name": "hardhat",
+  "version": "1.0.0",
+  "description": "HAT Installer",
+  "homepage": "https://github.com/loglot/HARDHAT#readme",
+  "bugs": {
+    "url": "https://github.com/loglot/HARDHAT/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loglot/HARDHAT.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^43.2.0"
+  }
+}

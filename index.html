@@ -1,0 +1,33 @@
+<body>
+<style>
+    @font-face {
+        font-family: "pix";
+        src: url("./JF-Dot-Shinonome-14-Regular.woff") format('woff');
+    }
+    body {
+        background-color:#150d20;
+        color:hsl(262, 24%, 80%);
+        font-family:pix;
+    }
+    input {
+        background-color:#2a203a;
+        color:#c8bfd8;
+        border-style: solid;
+        border-color: #322747;
+        outline:none;
+        border-radius: 5px;
+        max-width: 400px;
+        width:100%;
+        font-family:pix;
+    }
+</style>
+<h1>HARDHAT</h1>
+<h3>The HAT Installer</h3>
+<label for="FEZ PATH">FEZ Game Path:<br></label>
+<input type="text" name="FEZ PATH" value="${Steam Library Path}/steamapps/common/FEZ">
+
+    <select id="versions">
+        <option value="/new">Latest</option>
+    </select>
+</body>
+<script src="./handle.js" type="module"></script>
