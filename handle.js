@@ -1,3 +1,4 @@
+
 var verSel=document.getElementById("versions")
 var steamos=document.getElementById("steamOS")
 var start=document.getElementById("exec")
@@ -34,6 +35,7 @@ async function ver(){
             )
         }
     }
+    start.style.display="block"
 }
 function versionNumber(i){
     return (releases[i].html_url
@@ -43,11 +45,12 @@ function versionNumber(i){
 function install(){
 //   window.electronAPI.write(path.value,"test file")
     console.log(path.value)
+    const installer=releases[release]
     window.electronAPI.exec(['./install2.x.sh', [
-        'https://github.com/FEZModding/HAT/releases/download/v2.0.1/HATinstaller-linux-x64', 
-        './HATinstaller-linux-x64',
-        "Auto Detect",
-        "2.0.1"
+        installer.assets[0].browser_download_url, 
+        './'+installer.assets[0].name,
+        path.value,
+        versionNumber(release)
     ]])
     start.style.display="none"
 }
