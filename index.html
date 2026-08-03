@@ -2,14 +2,14 @@
 <style>
     @font-face {
         font-family: "pix";
-        src: url("./JF-Dot-Shinonome-14-Regular.woff") format('woff');
+        src: url("./PixelarRegular.woff") format('woff');
     }
     body {
         background-color:#150d20;
         color:hsl(262, 24%, 80%);
         font-family:pix;
     }
-    input {
+    .textin {
         background-color:#2a203a;
         color:#c8bfd8;
         border-style: solid;
@@ -20,14 +20,54 @@
         width:100%;
         font-family:pix;
     }
+    button{
+        background-color:#2a203a;
+        color:#c8bfd8;
+        border-style: solid;
+        border-color: #322747;
+        font-family:pix;
+        border-radius: 5px;
+        outline:none;
+
+    }
+    select{
+        background-color:#2a203a;
+        color:#c8bfd8;
+        border-style: solid;
+        border-color: #322747;
+        font-family:pix;
+        border-radius: 5px;
+        outline:none;
+
+    }
+    p{
+        white-space: pre-line; 
+    }
+    #steamOS{
+        display:none;
+    }
+    .warn{
+        color:#e1aaaa;
+    }
+    #id{
+        background-color: #0e0718;
+    }
 </style>
 <h1>HARDHAT</h1>
 <h3>The HAT Installer</h3>
 <label for="FEZ PATH">FEZ Game Path:<br></label>
-<input type="text" name="FEZ PATH" value="${Steam Library Path}/steamapps/common/FEZ">
+<input class="textin" id="path" type="text" name="FEZ PATH" value="${Steam Library Path}/steamapps/common/FEZ [PLACEHOLDER]">
 
     <select id="versions">
         <option value="/new">Latest</option>
     </select>
+    <div id="steamOS">
+        <h2 class="warn">WARNING: Pre 2.0 builds are Depricated</h2>
+        <p class="warn"> some mods don't support newer builds, but depricated builds are experimental in this installer</p>
+        <label for="sos">SteamOS: </label>
+        <input type="checkbox" name="sos" value=false>      
+    </div><br><br>
+<button id="exec">Install!</button>
+<p id="log">log:</p>
 </body>
-<script src="./handle.js" type="module"></script>
+<script src="./handle.js" type="module"></script><br>
