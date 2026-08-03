@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const os = require('os')
 const fs = require('fs')
 const path = require('path')
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 var window
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -17,10 +17,31 @@ const createWindow = () => {
   window=win
 
 }
-function execute(e,command, callback=(e)=>{
-    window.webContents.send("log",e)
-}){
-    exec(command, function(error, stdout, stderr){ callback(stdout); });
+function execute(e,command, log="normal"){
+    // console.log(command)
+    const item=spawn(...command)
+    // const item=spawn('wget', ['-v','https://github.com/FEZModding/HAT/releases/download/v2.0.1/HATinstaller-linux-x64'])
+    item.stdout.on('data',(e)=>{
+        // console.log(e)
+        console.log(`${e}`)
+        if(log=="normal"){
+            window.webContents.send("log",`${e}`)
+        }
+        if(log=="curl"){
+            window.webContents.send("log",`${e}`)
+        }
+    })
+    item.stderr.on('data',(e)=>{
+        // console.log(e)
+        console.log(`${e}`)
+        if(log=="normal"){
+            window.webContents.send("log",`${e}`)
+        }
+        if(log=="curl"){
+            window.webContents.send("logc",`${e}`)
+        }
+    })
+    // exec(command, function(error, stdout, stderr){ callback(stdout); });
     
 };
 function expandHome(inp) {

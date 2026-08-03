@@ -4,6 +4,10 @@
         font-family: "pix";
         src: url("./PixelarRegular.woff") format('woff');
     }
+    @font-face {
+        font-family: "pixmono";
+        src: url("./DepartureMono-Regular.woff") format('woff');
+    }
     body {
         background-color:#150d20;
         color:hsl(262, 24%, 80%);
@@ -49,14 +53,28 @@
     .warn{
         color:#e1aaaa;
     }
-    #id{
+    .log{
         background-color: #0e0718;
+        font-family: pixmono;
+        font-size: small;
+        white-space: pre;
+        overflow:auto;
+        height:500px;
+        width:100%;
+        overflow-x: hidden;
+    }
+    #curl{
+        overflow:auto;
+        height:80px;
+        width:100%;
+        overflow-x: hidden;
+        /* max-width: 600px; */
     }
 </style>
 <h1>HARDHAT</h1>
 <h3>The HAT Installer</h3>
 <label for="FEZ PATH">FEZ Game Path:<br></label>
-<input class="textin" id="path" type="text" name="FEZ PATH" value="${Steam Library Path}/steamapps/common/FEZ [PLACEHOLDER]">
+<input class="textin" id="path" type="text" name="FEZ PATH" value="Auto Detect">
 
     <select id="versions">
         <option value="/new">Latest</option>
@@ -68,6 +86,7 @@
         <input type="checkbox" name="sos" value=false>      
     </div><br><br>
 <button id="exec">Install!</button>
-<p id="log">log:</p>
+<p id="log" class="log">log:</p>
+<!-- <p id="curl" class="log">curl log:</p> -->
 </body>
 <script src="./handle.js" type="module"></script><br>

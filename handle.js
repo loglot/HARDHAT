@@ -3,6 +3,7 @@ var steamos=document.getElementById("steamOS")
 var start=document.getElementById("exec")
 var path=document.getElementById("path")
 var log=document.getElementById("log")
+// var clog=document.getElementById("curl")
 var releases
 var release=0
 
@@ -42,11 +43,12 @@ function versionNumber(i){
 function install(){
 //   window.electronAPI.write(path.value,"test file")
     console.log(path.value)
-    // session.downloadURL(releases[release].assets[0].browser_download_url)
-    // window.electronAPI.exec(`curl -v ${releases[release].assets[0].browser_download_url}`)
-    // window.electronAPI.exec(`curl -v https://github.com/FEZModding/HAT/releases/download/v2.0.1/HATinstaller-linux-x64`)
-    window.electronAPI.exec(`pwd`)
-    window.electronAPI.exec(`ls`)
+    window.electronAPI.exec(['./install2.x.sh', [
+        'https://github.com/FEZModding/HAT/releases/download/v2.0.1/HATinstaller-linux-x64', 
+        './HATinstaller-linux-x64',
+        "Auto Detect",
+        "2.0.1"
+    ]])
     start.style.display="none"
 }
 verSel.addEventListener("change",(e)=>{
@@ -68,5 +70,6 @@ start.addEventListener("click",(e)=>{
 })
 ver()
 window.electronAPI.onLog((text) => {
-    log.append("\n"+text)
+    log.append(""+text)
+        log.scrollTop=log.scrollHeight
 })
