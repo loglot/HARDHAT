@@ -4,10 +4,11 @@ var steamos=document.getElementById("steamOS")
 var start=document.getElementById("exec")
 var path=document.getElementById("path")
 var log=document.getElementById("log")
+var status=document.getElementById("status")
 // var clog=document.getElementById("curl")
 var releases
 var release=0
-
+var running=false
 async function ver(){
     const versions = await fetch("https://api.github.com/repos/FEZModding/HAT/releases")
     if(!versions.ok){
@@ -73,6 +74,39 @@ start.addEventListener("click",(e)=>{
 })
 ver()
 window.electronAPI.onLog((text) => {
-    log.append(""+text)
-        log.scrollTop=log.scrollHeight
+    var split=text.split("\n")
+        console.log(split)
+    for(let i in split){
+        var parsed=split[i].split("-|-")
+        console.log(split[i])
+        switch(parsed[0]){
+            case("-title"):
+                status.innerHTML= parsed[1]
+                break
+            case("-start"):
+                running=true
+                break
+            case("-clear"):
+                log.innerHTML=""
+                break
+            case("-error"):
+                status.style.color="#e1aaaa"
+                running=false
+                break
+            case("-finish"):
+                status.style.color="#aae1aa"
+                running=false
+                break
+            default:
+                if(i!=0){
+                    log.append("\n")
+                }
+                log.append(split[i])
+                log.scrollTop=log.scrollHeight
+        }
+    }
 })
+var intervalID = window.setInterval(feedback, 1000);
+function feedback(){
+    if(running) status.append(".")
+}

@@ -31,7 +31,22 @@
         border-color: #322747;
         font-family:pix;
         border-radius: 5px;
+        /* outline:none; */
+        font-size:large;
         outline:none;
+
+    }
+    button:active{
+        background-color:#1d142b;
+        border-color:#160f22;
+
+    }
+    .active{
+        background-color:#3e2e58;
+        border-color: #574576;
+
+    }
+    .final{
         display:none;
 
     }
@@ -48,7 +63,7 @@
     p{
         white-space: pre-line; 
     }
-    #steamOS{
+    .hidden{
         display:none;
     }
     .warn{
@@ -63,6 +78,7 @@
         height:500px;
         width:100%;
         overflow-x: hidden;
+        scrollbar-color: #c8bfd8 #0e0718;
     }
     #curl{
         overflow:auto;
@@ -71,23 +87,35 @@
         overflow-x: hidden;
         /* max-width: 600px; */
     }
+    .nav{
+        height:40px
+    }
 </style>
 <h1>HARDHAT</h1>
 <h3>The HAT Installer</h3>
-<label for="FEZ PATH">FEZ Game Path:<br></label>
-<input class="textin" id="path" type="text" name="FEZ PATH" value="Auto Detect">
+<div class="nav">
+    <button id="installation" class="active">installation</button>
+    <button id="mods">mods</button>
+    <button id="launch">launch</button>
+</div>
+<div class = "installer">
+    <label for="FEZ PATH">FEZ Game Path:<br></label>
+    <input class="textin" id="path" type="text" name="FEZ PATH" value="Auto Detect">
 
-    <select id="versions">
-        <option value="/new">Latest</option>
-    </select>
-    <div id="steamOS">
-        <h2 class="warn">WARNING: Pre 2.0 builds are Depricated</h2>
-        <p class="warn"> some mods don't support newer builds, but depricated builds are experimental in this installer</p>
-        <label for="sos">SteamOS: </label>
-        <input type="checkbox" name="sos" value=false>      
-    </div><br><br>
-<button id="exec">Install!</button>
-<p id="log" class="log">log:</p>
+        <select id="versions">
+            <option value="/new">Latest</option>
+        </select>
+        <div id="steamOS" class="hidden">
+            <h2 class="warn">WARNING: Pre 2.0 builds are Depricated</h2>
+            <p class="warn"> some mods don't support newer builds, but depricated builds are experimental in this installer</p>
+            <!-- <label for="sos">SteamOS: </label>
+            <input type="checkbox" name="sos" value=false>       -->
+        </div><br><br>
+    <button id="exec" class="final hidden">Install!</button>
+    <h1 id="status">stopped</h1>
+    <p id="log" class="log">log:</p>
+</div>
+
 <!-- <p id="curl" class="log">curl log:</p> -->
 </body>
 <script src="./handle.js" type="module"></script><br>
