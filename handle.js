@@ -5,6 +5,7 @@ var start=document.getElementById("exec")
 var path=document.getElementById("path")
 var log=document.getElementById("log")
 var status=document.getElementById("status")
+var logButton=document.getElementById("logs")
 // var clog=document.getElementById("curl")
 var releases
 var release=0
@@ -71,6 +72,12 @@ verSel.addEventListener("change",(e)=>{
 })
 start.addEventListener("click",(e)=>{
     install()
+})
+var logsShown=false
+logButton.addEventListener("click",(e)=>{
+    log.style.display   = logsShown ? "none" : "block"
+    logButton.innerHTML = logsShown ? "show logs" : "hide logs"
+    logsShown=!logsShown
 })
 ver()
 window.electronAPI.onLog((text) => {

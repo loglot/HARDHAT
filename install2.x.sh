@@ -33,11 +33,6 @@ echo  "-title-|-Installing HAT"
     else
         yes | $home/$2-$4 --path $3
     fi
-    echo
-    echo
-    echo !! INSTALLATION COMPLETE !!
-    echo
-    echo
 echo  "-title-|-Complete!"
 echo  "-finish"
 else
