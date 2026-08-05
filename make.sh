@@ -3,6 +3,7 @@ npm run make
 mkdir out/HARDHAT-Linux-x64
 mv out/hardhat-linux-x64 out/HARDHAT-Linux-x64/
 mv out/HARDHAT-Linux-x64/hardhat-linux-x64/resources/app/install2.x.sh out/HARDHAT-Linux-x64/hardhat-linux-x64/
+mv out/HARDHAT-Linux-x64/hardhat-linux-x64/resources/app/find.sh out/HARDHAT-Linux-x64/hardhat-linux-x64/
 echo cd ./hardhat-linux-x64 > out/HARDHAT-Linux-x64/HARDHAT.sh
 echo ./hardhat >> out/HARDHAT-Linux-x64/HARDHAT.sh
 chmod +x out/HARDHAT-Linux-x64/HARDHAT.sh
