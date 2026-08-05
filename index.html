@@ -114,7 +114,7 @@
     }
     .flex{
 
-        display: flex;
+        /* display: flex; */
         flex-wrap: wrap;
     justify-content: center;
     }
@@ -122,7 +122,7 @@
 <h1 id="h">HARDHAT</h1>
 <h3>The HAT Installer</h3>
 <div>
-    <h1 id="status">idle</h1>
+    <h1 id="logstat">idle</h1>
     <button id="logs">show logs</button>
     <p id="log" class="log hidden">[empty]</p>
     <br><br><br><br>
@@ -149,6 +149,7 @@
         <div id="unsupported" class="hidden">
             <h2 class="error">PRE 2.0 BUILDS UNSUPPORTED CURRENTLY</h2>
         </div><br><br>
+    <h1 id="confirm" class="hidden">HAT Already Installed</h1>
     <button id="exec" class="final hidden">Install!</button>
 
 </div>
@@ -157,12 +158,12 @@
     <button id="HAT">HAT</button>
 </div>
 <div class = "mods hidden" id="pagemo">
-    <h1 class="warn">mod installation coming later</h1>
-    <div class="flex" id="modflex">
+    <h1 class="warn" id="nins">HAT Not Installed</h1>
+    <div class="flex hidden" id="modflex">
 
     </div>
 </div>
 
 <!-- <p id="curl" class="log">curl log:</p> -->
 </body>
-<script src="./handle.js" type="module"></script><br>
+<script src="./handle.js"></script><br>

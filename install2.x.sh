@@ -26,17 +26,25 @@ if [ $? -eq 1 ]; then
         echo
     sleep .5
     echo  "-title-|-Installing HAT"
-    if [ "$3" = "Auto Detect" ]; then
-        yes | $home/$2-$4
-    else
+    # if [ "$3" = "Auto Detect" ]; then
+    #     yes | $home/$2-$4
+    # else
         yes | $home/$2-$4 --path "$3"
-    fi
+    # fi
     if [ $? -eq 126 ]; then
         echo "-title-|-Wrong Install Script Used??"
         echo  "-error"
     else
-        echo  "-title-|-Complete!"
-        echo  "-finish"
+        if [ -f $3/HAT ]; then
+            echo  "-title-|-Complete!"
+            echo  "-finish"
+            echo "$3" > $home/path 
+            mkdir $3/Mods
+            echo "-hat"
+        else
+            echo  "-title-|-HAT installation failed; Check logs"
+            echo  "-error"
+        fi
     fi
 else
     echo !! MONO NOT FOUND !! Please install a version of mono

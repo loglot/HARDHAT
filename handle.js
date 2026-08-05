@@ -5,7 +5,7 @@ var unsupported=document.getElementById("unsupported")
 var start=document.getElementById("exec")
 var path=document.getElementById("path")
 var log=document.getElementById("log")
-var status=document.getElementById("status")
+var logstat=document.getElementById("logstat")
 var logButton=document.getElementById("logs")
 var FEZ=document.getElementById("FEZ")
 var HAT=document.getElementById("HAT")
@@ -17,11 +17,14 @@ var pagemo=document.getElementById("pagemo")
 var pagemod=document.getElementById("modflex")
 var pagela=document.getElementById("pagela")
 var title=document.getElementById("h")
+var con=document.getElementById("confirm")
+var nins=document.getElementById("nins")
 // var clog=document.getElementById("curl")
 var mods
 var releases
 var release=0
 var running=false
+var installpath=""
 async function ver(){
     const versions = await fetch("https://api.github.com/repos/FEZModding/HAT/releases")
     if(!versions.ok){
@@ -44,6 +47,12 @@ async function ver(){
     }
     start.style.display="block"
 }
+function installmod(url,fname,mod){
+    window.electronAPI.exec(['./installMod.sh', [
+        url,fname,installpath,mod
+    ]])
+
+}
 async function mod(){
     const versions = await fetch("https://gamebanana.com/apiv12/Game/9985/Subfeed")
     if(!versions.ok){
@@ -59,23 +68,23 @@ async function mod(){
                 var img=list[i]._aPreviewMedia._aImages[0]
                 const mod = await fetch("https://gamebanana.com/apiv12/Mod/"+list[i]._idRow+"/ProfilePage")
                 var modobj= await mod.json()
+                var file = modobj._aFiles[0]
                 console.log(modobj)
                 pagemod.insertAdjacentHTML('beforeend',`
-                    <div class="mod">
+                    <div class="mod" id="${file._sFile}">
                         <img class="modimg" src="${img._sBaseUrl+"/"+img._sFile}">
                         <h2>${list[i]._sName}</h2>
                         <p>${modobj._sDescription}</p>
-                        <button onclick="installmod(${i})");>Install</button>
+                        <button onclick='installmod(
+                            "${file._sDownloadUrl}",
+                            "${file._sFile}",
+                            "${list[i]._sName}"
+                        )'>Install</button>
                     </div>
                 `)
-
             }
         }
     }
-    
-}
-function installmod(){
-
 }
 function versionNumber(i){
     return (releases[i].html_url
@@ -135,41 +144,55 @@ logButton.addEventListener("click",(e)=>{
     log.style.display   = logsShown ? "none" : "block"
     logButton.innerHTML = logsShown ? "show logs" : "hide logs"
     logsShown=!logsShown
+    log.scrollTop=log.scrollHeight
 })
 ver()
 window.electronAPI.onLog((text) => {
     var split=text.split("\n")
-        // console.log(split)
+        console.log(split)
     for(let i in split){
         var parsed=split[i].split("-|-")
-        // console.log(split[i])
+        console.log(split[i])
+console.log(logstat.innerHTML)
         switch(parsed[0]){
             case("-title"):
-                status.innerHTML= parsed[1]
+                logstat.innerHTML= parsed[1]
                 break
             case("-start"):
                 running=true
-                start.style.display="none"
-                status.style.color="#c8bfd8"
+                // start.style.display="none"
+                logstat.style.color="#c8bfd8"
                 break
             case("-clear"):
                 log.innerHTML=""
                 break
             case("-error"):
-                status.style.color="#e1aaaa"
+                logstat.style.color="#e1aaaa"
                 start.style.display="block"
                 running=false
                 break
             case("-finish"):
-                status.style.color="#aae1aa"
+                logstat.style.color="#aae1aa"
+                start.style.display="block"
+                running=false
+                break
+            case("-stop"):
+                // logstat.style.color="#aae1aa"
                 start.style.display="block"
                 running=false
                 break
             case("-path"):
-                // status.style.color="#aae1aa"
+                // logstat.style.color="#aae1aa"
                 // start.style.display="block"
                 // running=false
                 path.value=parsed[1]
+                break
+            case("-hat"):
+                con.style.display="block"
+                start.innerHTML="reinstall"
+                installpath=path.value
+                nins.style.display="none"
+                pagemod.style.display="flex"
                 break
             default:
                 if(i!=0){
@@ -182,7 +205,7 @@ window.electronAPI.onLog((text) => {
 })
 var intervalID = window.setInterval(feedback, 1000);
 function feedback(){
-    if(running) status.append(".")
+    if(running) logstat.append(".")
 }
 
 window.electronAPI.exec(['./find.sh',[]])
