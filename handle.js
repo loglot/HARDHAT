@@ -79,7 +79,7 @@ function populateMod(namne){// skrew it, this typo is canon now
                     <button onclick='manage(
                             "${namne}", "remove"
                         )'>uninstall</button>
-                    <button>disable</button>
+                    <!-- <button>disable</button> -->
                     ${namne.split(".")[1]=="zip"?
 
                     `<button onclick='manage(
