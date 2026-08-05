@@ -114,9 +114,20 @@
     }
     .flex{
 
-        /* display: flex; */
+        display: flex;
+    }
+    .wrap{
         flex-wrap: wrap;
     justify-content: center;
+
+    }
+    .file{
+        width:100%-10px;
+        background-color: #0e0718;
+        justify-content:space-between;
+        margin:5px;
+        padding:5px;
+	align-items:center;
     }
 </style>
 <h1 id="h">HARDHAT</h1>
@@ -149,7 +160,7 @@
         <div id="unsupported" class="hidden">
             <h2 class="error">PRE 2.0 BUILDS UNSUPPORTED CURRENTLY</h2>
         </div><br><br>
-    <h1 id="confirm" class="hidden">HAT Already Installed</h1>
+    <h1 id="confirm" class="hidden" style="color:#aae1aa">HAT Already Installed</h1>
     <button id="exec" class="final hidden">Install!</button>
 
 </div>
@@ -159,8 +170,12 @@
 </div>
 <div class = "mods hidden" id="pagemo">
     <h1 class="warn" id="nins">HAT Not Installed</h1>
-    <div class="flex hidden" id="modflex">
-
+    <div id="modpage" class="hidden">
+        <button id="modman">Manage</button>
+        <button id="moddown" class="active">Download</button>
+        <div class="flex wrap hidden" id="modflex"></div>
+        <div class="hidden" id="modmanage">
+        </div>
     </div>
 </div>
 

@@ -2,6 +2,7 @@ steam=~/.local/share/Steam/steamapps/common/FEZ
 gog="~/GOG Games/FEZ"
 home=~/.hardhat
 hat=$(cat $home/path)
+version=$(cat $home/version)
 echo
 path="null"
 if [ -d "$hat" ]; then
@@ -23,6 +24,7 @@ if [ $path = "null" ]; then
     echo "-path-|-FEZ Not Detected"
 else
     if [ -f $path/HAT ]; then
-        echo "-hat"
+        echo "-hat-|-$version"
+        ls -I "*list.txt" $path/Mods -1 | sed 's/^/-MOD-|-/'
     fi
 fi

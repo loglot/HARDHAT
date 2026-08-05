@@ -19,12 +19,17 @@ var pagela=document.getElementById("pagela")
 var title=document.getElementById("h")
 var con=document.getElementById("confirm")
 var nins=document.getElementById("nins")
+var mp=document.getElementById("modpage")
+var mm =document.getElementById("modman")
+var md =document.getElementById("moddown")
+var mme =document.getElementById("modmanage")
 // var clog=document.getElementById("curl")
 var mods
 var releases
 var release=0
 var running=false
 var installpath=""
+var curver=""
 async function ver(){
     const versions = await fetch("https://api.github.com/repos/FEZModding/HAT/releases")
     if(!versions.ok){
@@ -53,6 +58,42 @@ function installmod(url,fname,mod){
     ]])
 
 }
+function manage(name,type){
+    window.electronAPI.exec(['./manageMod.sh', [
+        installpath,name,type
+    ]])
+    let remove = document.getElementsByClassName("MOD-"+name.replaceAll(" ",""));
+    if(type=="remove"){
+        for (i in remove){
+            remove[i].style.display="none"
+        }
+
+    }
+}
+function populateMod(namne){// skrew it, this typo is canon now
+    mme.insertAdjacentHTML("beforeend",`
+
+            <div class="file flex MOD-${namne.replaceAll(" ","")}">
+                <h2>${namne}</h2>
+                <div style="height:100%">
+                    <button onclick='manage(
+                            "${namne}", "remove"
+                        )'>uninstall</button>
+                    <button>disable</button>
+                    ${namne.split(".")[1]=="zip"?
+
+                    `<button onclick='manage(
+                            "${namne}", "unzip"
+                        )'>unzip</button>` : 
+
+                    `<button onclick='manage(
+                            "${namne}", "unpack"
+                        )'>unpack</button>`
+                    }
+                </div>
+            </div>
+    `)
+}
 async function mod(){
     const versions = await fetch("https://gamebanana.com/apiv12/Game/9985/Subfeed")
     if(!versions.ok){
@@ -80,6 +121,7 @@ async function mod(){
                             "${file._sFile}",
                             "${list[i]._sName}"
                         )'>Install</button>
+                        <a href="${list[i]._sProfileUrl}"><button>Open Mod Page</button></a>
                     </div>
                 `)
             }
@@ -187,12 +229,16 @@ console.log(logstat.innerHTML)
                 // running=false
                 path.value=parsed[1]
                 break
+            case("-MOD"):
+                populateMod(parsed[1])
+                break
             case("-hat"):
                 con.style.display="block"
+                con.innerHTML=`HAT ${parsed[1]} Already Installed`
                 start.innerHTML="reinstall"
                 installpath=path.value
                 nins.style.display="none"
-                pagemod.style.display="flex"
+                mp.style.display="block"
                 break
             default:
                 if(i!=0){
@@ -240,5 +286,17 @@ navmo.addEventListener("click",(e)=>{
 })
 navin.addEventListener("click",(e)=>{
     select(navin,pagein)
+})
+mm.addEventListener("click",(e)=>{
+    md.classList.remove("active");
+    mm.classList.add("active");
+    pagemod.style.display="none"
+    mme.style.display="block"
+})
+md.addEventListener("click",(e)=>{
+    mm.classList.remove("active");
+    md.classList.add("active");
+    pagemod.style.display="flex"
+    mme.style.display="none"
 })
 mod()

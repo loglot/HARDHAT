@@ -39,8 +39,9 @@ if [ $? -eq 1 ]; then
             echo  "-title-|-Complete!"
             echo  "-finish"
             echo "$3" > $home/path 
+            echo $4 > $home/version
             mkdir $3/Mods
-            echo "-hat"
+            echo "-hat-|-$4"
         else
             echo  "-title-|-HAT installation failed; Check logs"
             echo  "-error"
