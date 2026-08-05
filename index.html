@@ -13,6 +13,10 @@
         color:hsl(262, 24%, 80%);
         font-family:pix;
     }
+    :root{
+
+        scrollbar-color: #c8bfd8 #0e0718;
+    }
     .textin {
         background-color:#2a203a;
         color:#c8bfd8;
@@ -53,9 +57,9 @@
     select{
         background-color:#2a203a;
         color:#c8bfd8;
+        font-family:pix;
         border-style: solid;
         border-color: #322747;
-        font-family:pix;
         border-radius: 5px;
         outline:none;
 
@@ -93,9 +97,36 @@
     .nav{
         height:40px
     }
+    .mod{
+        width:300px;
+        height:350px;
+        background-color: #0e0718;
+        margin:10px;
+        padding:5px;
+        border-style: solid;
+        border-color: #1d152d;
+        border-radius: 5px;
+    }
+    .modimg{
+        width:100%;
+        height:50%;
+        object-fit: cover;
+    }
+    .flex{
+
+        display: flex;
+        flex-wrap: wrap;
+    justify-content: center;
+    }
 </style>
 <h1 id="h">HARDHAT</h1>
 <h3>The HAT Installer</h3>
+<div>
+    <h1 id="status">idle</h1>
+    <button id="logs">show logs</button>
+    <p id="log" class="log hidden">[empty]</p>
+    <br><br><br><br>
+</div>
 <div class="nav">
     <button id="installation" class="active">installation</button>
     <button id="mods">mods</button>
@@ -119,9 +150,7 @@
             <h2 class="error">PRE 2.0 BUILDS UNSUPPORTED CURRENTLY</h2>
         </div><br><br>
     <button id="exec" class="final hidden">Install!</button>
-    <h1 id="status">idle</h1>
-    <button id="logs">show logs</button>
-    <p id="log" class="log hidden">[empty]</p>
+
 </div>
 <div class = "launcher hidden" id="pagela">
     <button id="FEZ">FEZ</button>
@@ -129,6 +158,9 @@
 </div>
 <div class = "mods hidden" id="pagemo">
     <h1 class="warn">mod installation coming later</h1>
+    <div class="flex" id="modflex">
+
+    </div>
 </div>
 
 <!-- <p id="curl" class="log">curl log:</p> -->

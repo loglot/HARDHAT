@@ -14,9 +14,11 @@ var navmo=document.getElementById("mods")
 var navla=document.getElementById("launch")
 var pagein=document.getElementById("pagein")
 var pagemo=document.getElementById("pagemo")
+var pagemod=document.getElementById("modflex")
 var pagela=document.getElementById("pagela")
 var title=document.getElementById("h")
 // var clog=document.getElementById("curl")
+var mods
 var releases
 var release=0
 var running=false
@@ -41,6 +43,39 @@ async function ver(){
         }
     }
     start.style.display="block"
+}
+async function mod(){
+    const versions = await fetch("https://gamebanana.com/apiv12/Game/9985/Subfeed")
+    if(!versions.ok){
+        throw new Error("Could Not Fetch Mods")
+    }else{
+        var obj= await versions.json()
+        var list=obj._aRecords
+        mods=list
+        // console.log(list)
+        // console.log(list._aRecords)
+        for(let i = 0; i<list.length;i++){
+            if(list[i]._aRootCategory._sName=="HAT Mods"){
+                var img=list[i]._aPreviewMedia._aImages[0]
+                const mod = await fetch("https://gamebanana.com/apiv12/Mod/"+list[i]._idRow+"/ProfilePage")
+                var modobj= await mod.json()
+                console.log(modobj)
+                pagemod.insertAdjacentHTML('beforeend',`
+                    <div class="mod">
+                        <img class="modimg" src="${img._sBaseUrl+"/"+img._sFile}">
+                        <h2>${list[i]._sName}</h2>
+                        <p>${modobj._sDescription}</p>
+                        <button onclick="installmod(${i})");>Install</button>
+                    </div>
+                `)
+
+            }
+        }
+    }
+    
+}
+function installmod(){
+
 }
 function versionNumber(i){
     return (releases[i].html_url
@@ -104,10 +139,10 @@ logButton.addEventListener("click",(e)=>{
 ver()
 window.electronAPI.onLog((text) => {
     var split=text.split("\n")
-        console.log(split)
+        // console.log(split)
     for(let i in split){
         var parsed=split[i].split("-|-")
-        console.log(split[i])
+        // console.log(split[i])
         switch(parsed[0]){
             case("-title"):
                 status.innerHTML= parsed[1]
@@ -183,3 +218,4 @@ navmo.addEventListener("click",(e)=>{
 navin.addEventListener("click",(e)=>{
     select(navin,pagein)
 })
+mod()
