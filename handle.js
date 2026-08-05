@@ -86,7 +86,7 @@ verSel.addEventListener("change",(e)=>{
 
 
     const dep = !compareVer(ver, "2.0.0")
-    const uns = !compareVer(ver, "1.2.0")
+    const uns = !compareVer(ver, "2.0.0")
     console.log(dep, uns)
     depricated.style.display= dep ? "block" : "none"
     unsupported.style.display= uns ? "block" : "none"
