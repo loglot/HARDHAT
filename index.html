@@ -69,6 +69,9 @@
     .warn{
         color:#e1aaaa;
     }
+    .error{
+        color:#ff0000;
+    }
     .log{
         background-color: #0e0718;
         font-family: pixmono;
@@ -91,30 +94,41 @@
         height:40px
     }
 </style>
-<h1>HARDHAT</h1>
+<h1 id="h">HARDHAT</h1>
 <h3>The HAT Installer</h3>
 <div class="nav">
     <button id="installation" class="active">installation</button>
     <button id="mods">mods</button>
     <button id="launch">launch</button>
 </div>
-<div class = "installer">
+<div class = "installer" id="pagein">
     <label for="FEZ PATH">FEZ Game Path:<br></label>
     <input class="textin" id="path" type="text" name="FEZ PATH" value="Auto Detect">
 
         <select id="versions">
             <option value="/new">Latest</option>
         </select>
-        <div id="steamOS" class="hidden">
+        <div id="depricated" class="hidden">
             <h2 class="warn">WARNING: Pre 2.0 builds are Depricated</h2>
             <p class="warn"> some mods don't support newer builds, but depricated builds are experimental in this installer</p>
             <!-- <label for="sos">SteamOS: </label>
             <input type="checkbox" name="sos" value=false>       -->
+        </div>
+
+        <div id="unsupported" class="hidden">
+            <h2 class="error">PRE 1.2 BUILDS UNSUPPORTED CURRENTLY</h2>
         </div><br><br>
     <button id="exec" class="final hidden">Install!</button>
     <h1 id="status">idle</h1>
     <button id="logs">show logs</button>
-    <p id="log" class="log hidden">log:</p>
+    <p id="log" class="log hidden">[empty]</p>
+</div>
+<div class = "launcher hidden" id="pagela">
+    <button id="FEZ">FEZ</button>
+    <button id="HAT">HAT</button>
+</div>
+<div class = "mods hidden" id="pagemo">
+    <h1 class="warn">mod installation coming later</h1>
 </div>
 
 <!-- <p id="curl" class="log">curl log:</p> -->

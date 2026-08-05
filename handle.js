@@ -1,11 +1,21 @@
 
 var verSel=document.getElementById("versions")
-var steamos=document.getElementById("steamOS")
+var depricated=document.getElementById("depricated")
+var unsupported=document.getElementById("unsupported")
 var start=document.getElementById("exec")
 var path=document.getElementById("path")
 var log=document.getElementById("log")
 var status=document.getElementById("status")
 var logButton=document.getElementById("logs")
+var FEZ=document.getElementById("FEZ")
+var HAT=document.getElementById("HAT")
+var navin=document.getElementById("installation")
+var navmo=document.getElementById("mods")
+var navla=document.getElementById("launch")
+var pagein=document.getElementById("pagein")
+var pagemo=document.getElementById("pagemo")
+var pagela=document.getElementById("pagela")
+var title=document.getElementById("h")
 // var clog=document.getElementById("curl")
 var releases
 var release=0
@@ -17,24 +27,17 @@ async function ver(){
     }else{
         var list= await versions.json()
         releases=list
-            console.log(
-                    list
-                    )
-            verSel.innerHTML=''
+        // console.log(list)
+        verSel.innerHTML=''
+        var makeVer=(ver, i)=>{
             verSel.appendChild(
-                new Option(
-                    "Latest ("+versionNumber(0)+")",
-                    0
-                )
+                new Option(ver,i)
             )
+        }
 
+        makeVer("Latest ("+versionNumber(0)+")",0)
         for(let i = 1; i<list.length;i++){
-            verSel.appendChild(
-                new Option(
-                    versionNumber(i),
-                    i
-                )
-            )
+            makeVer(versionNumber(i),i)
         }
     }
     start.style.display="block"
@@ -54,21 +57,40 @@ function install(){
         path.value,
         versionNumber(release)
     ]])
-    start.style.display="none"
+    // start.style.display="none"
+}
+function compareVer(ver1, ver2){
+
+    const split = [ver1.split("."),ver2.split("."),[]]
+    for(let i in split){
+        for (let x in split[i]){
+            split[i][x]=parseInt(split[i][x].replace("v",""))
+        }
+    }
+    for (let i in split[0]){
+        console.log(split[0],split[1])
+        if(split[0][i]>split[1][i]){
+            return true
+        }else if(split[0][i]==split[1][i]){
+
+        }else{
+            return false
+        }
+    }
+    return true
 }
 verSel.addEventListener("change",(e)=>{
     release=e.target.value
     console.log(release+" "+versionNumber(release))
-    if(
-        versionNumber(release).split(".")[0]=="v1"||
-        versionNumber(release).split(".")[0]=="1"
-    ){
-        steamos.style.display="block"
-    }else{
-        steamos.style.display="none"
-        // console.log(release.split(".")[0])
+    var ver=versionNumber(release)
 
-    }
+
+    const dep = !compareVer(ver, "2.0.0")
+    const uns = !compareVer(ver, "1.2.0")
+    console.log(dep, uns)
+    depricated.style.display= dep ? "block" : "none"
+    unsupported.style.display= uns ? "block" : "none"
+    start.style.display= !uns ? "block" : "none"
 })
 start.addEventListener("click",(e)=>{
     install()
@@ -92,17 +114,27 @@ window.electronAPI.onLog((text) => {
                 break
             case("-start"):
                 running=true
+                start.style.display="none"
+                status.style.color="#c8bfd8"
                 break
             case("-clear"):
                 log.innerHTML=""
                 break
             case("-error"):
                 status.style.color="#e1aaaa"
+                start.style.display="block"
                 running=false
                 break
             case("-finish"):
                 status.style.color="#aae1aa"
+                start.style.display="block"
                 running=false
+                break
+            case("-path"):
+                // status.style.color="#aae1aa"
+                // start.style.display="block"
+                // running=false
+                path.value=parsed[1]
                 break
             default:
                 if(i!=0){
@@ -117,3 +149,37 @@ var intervalID = window.setInterval(feedback, 1000);
 function feedback(){
     if(running) status.append(".")
 }
+
+window.electronAPI.exec(['./find.sh',[]])
+
+
+FEZ.addEventListener("click",(e)=>{
+    window.electronAPI.exec([path.value+'/FEZ',[]])
+})
+
+HAT.addEventListener("click",(e)=>{
+    window.electronAPI.exec([path.value+'/HAT',[]])
+})
+
+
+function select(sel, sel2=title){
+    var nav=[navin, navmo, navla]
+    for (let i in nav){
+        nav[i].classList.remove("active");
+    } 
+    sel.classList.add("active");
+    var pages=[pagein, pagela, pagemo]
+    for (let i in pages){
+        pages[i].style.display="none";
+    } 
+    sel2.style.display="block"
+}
+navla.addEventListener("click",(e)=>{
+    select(navla,pagela)
+})
+navmo.addEventListener("click",(e)=>{
+    select(navmo, pagemo)
+})
+navin.addEventListener("click",(e)=>{
+    select(navin,pagein)
+})

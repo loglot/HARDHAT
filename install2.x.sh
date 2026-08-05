@@ -5,18 +5,16 @@ command_not_found_handle() {
 home=~/.hardhat/
 echo
 echo $home
-    echo
-    echo
-
-
+echo
+echo
 
 
 mono
 if [ $? -eq 1 ]; then
 
-echo  "-clear"
-echo  "-start"
-echo  "-title-|-Downloading Installer"
+    echo  "-clear"
+    echo  "-start"
+    echo  "-title-|-Downloading Installer"
     if [ -f $home/$2-$4 ]; then
         echo Already cached $home/$2-$4, skipping download
     else
@@ -26,17 +24,22 @@ echo  "-title-|-Downloading Installer"
     fi
         echo
         echo
-    sleep 1
-echo  "-title-|-Installing HAT"
+    sleep .5
+    echo  "-title-|-Installing HAT"
     if [ "$3" = "Auto Detect" ]; then
         yes | $home/$2-$4
     else
-        yes | $home/$2-$4 --path $3
+        yes | $home/$2-$4 --path "$3"
     fi
-echo  "-title-|-Complete!"
-echo  "-finish"
+    if [ $? -eq 126 ]; then
+        echo "-title-|-Wrong Install Script Used??"
+        echo  "-error"
+    else
+        echo  "-title-|-Complete!"
+        echo  "-finish"
+    fi
 else
     echo !! MONO NOT FOUND !! Please install a version of mono
-echo  "-title-|-Missing Dependancy: mono"
-echo  "-error"
+    echo  "-title-|-Missing Dependancy: mono"
+    echo  "-error"
 fi
