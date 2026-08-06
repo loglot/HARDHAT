@@ -4,7 +4,7 @@ function install(){
 //   window.electronAPI.write(path.value,"test file")
     console.log(path.value)
     const installer=releases[release]
-    window.electronAPI.exec(['./install2.x.sh', [
+    window.electronAPI.exec(['./SH/install2.x.sh', [
         installer.assets[0].browser_download_url, 
         './'+installer.assets[0].name,
         path.value,

@@ -6,13 +6,13 @@ var mm =document.getElementById("modman")
 var md =document.getElementById("moddown")
 
 function installmod(url,fname,mod){
-    window.electronAPI.exec(['./installMod.sh', [
+    window.electronAPI.exec(['./SH/installMod.sh', [
         url,fname,installpath,mod
     ]])
 
 }
 function manage(name,type){
-    window.electronAPI.exec(['./manageMod.sh', [
+    window.electronAPI.exec(['./SH/manageMod.sh', [
         installpath,name,type
     ]])
     let remove = document.getElementsByClassName("MOD-"+name.replaceAll(" ",""));

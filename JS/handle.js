@@ -18,6 +18,6 @@ HAT.addEventListener("click",(e)=>{
 })
 
 
-window.electronAPI.exec(['./find.sh',[]])
+window.electronAPI.exec(['./SH/find.sh',[]])
 ver()
 mod()
