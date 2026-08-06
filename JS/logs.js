@@ -58,6 +58,9 @@ console.log(logstat.innerHTML)
             case("-MOD"):
                 populateMod(parsed[1])
                 break
+            case("-DISABLE"):
+                disableMod(parsed[1])
+                break
             case("-hat"):
                 con.style.display="block"
                 con.innerHTML=`HAT ${parsed[1]} Already Installed`

@@ -5,7 +5,10 @@ var mme =document.getElementById("modmanage")
 var mm =document.getElementById("modman")
 var mr =document.getElementById("modrefresh")
 var md =document.getElementById("moddown")
-
+var disabled=[]
+function disableMod(file){
+    disabled.push(file.replaceAll("\r", ""))
+}
 function installmod(url,fname,mod){
     window.electronAPI.exec(['./SH/installMod.sh', [
         url,fname,installpath,mod
@@ -17,23 +20,60 @@ function manage(name,type){
         installpath,name,type
     ]])
     let remove = document.getElementsByClassName("MOD-"+name.replaceAll(" ",""));
+    // remove.pop()
     if(type=="remove"){
-        for (i in remove){
+        for (let i = 0; i<remove.length;i++){
             remove[i].style.display="none"
+        }
+
+    }
+    if(type=="disable"){
+            console.warn(remove)
+        for (let i = 0; i<remove.length;i++){
+            disabled.push(name)
+            remove[i].children[0].style.color="#635a74"
+            remove[i].children[1].children[1].onclick=function() { manage(name, "enable") }
+            remove[i].children[1].children[1].innerHTML=`enable`
+        }
+
+    }
+    if(type=="enable"){
+        for (let i = 0; i<remove.length;i++){
+            disabled.push(name)
+            remove[i].children[0].style.color="#c8bfd8"
+            remove[i].children[1].children[1].onclick=function() { manage(name, "disable") }
+            remove[i].children[1].children[1].innerHTML=`disable`
         }
 
     }
 }
 function populateMod(namne){// skrew it, this typo is canon now
+    namne=namne.replaceAll("/","")
+    console.log(disabled.includes(namne), disabled)
+    var modgone=disabled.includes(namne)
     mme.insertAdjacentHTML("beforeend",`
 
             <div class="file flex MOD-${namne.replaceAll(" ","")}">
-                <h2>${namne}</h2>
-                <div style="height:100%">
+                <h2${
+                    modgone?
+                        ` style="color:#635a74;"`:
+                        ""
+                    }>${namne}</h2>
+                <div style="height:100%; ">
                     <button onclick='manage(
                             "${namne}", "remove"
                         )'>uninstall</button>
-                    <!-- <button>disable</button> -->
+
+                    ${modgone?
+                        `<button onclick='manage(
+                            "${namne}", "enable"
+                        )'>enable</button>`:
+
+                        `<button onclick='manage(
+                            "${namne}", "disable"
+                        )'>disable</button>`
+                    }
+
                     ${namne.split(".").pop()=="zip"?
 
                     `<button onclick='manage(
@@ -86,12 +126,12 @@ async function mod(){
 }
 function refresh(){
     mme.innerHTML=""
-
+    disabled=[]
     window.electronAPI.exec(['./SH/find.sh',[]])
 }
 mr.addEventListener("click",(e)=>{
-    mod()
     refresh()
+    mod()
 })
 mm.addEventListener("click",(e)=>{
     md.classList.remove("active");

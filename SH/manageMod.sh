@@ -24,6 +24,14 @@ if [ -d $home ]; then
         yes | mv ./$2/* ./
         echo "-title-|-unpacked $2"
         echo  "-finish"
+    elif [ $3 = "disable" ]; then
+        echo "$2" >> ./ignorelist.txt
+        echo "-title-|-disabled $2"
+        echo  "-finish"
+    elif [ $3 = "enable" ]; then
+        sed -i "/$2/d" ./ignorelist.txt
+        echo "-title-|-disabled $2"
+        echo  "-finish"
     else
         echo failed
     fi

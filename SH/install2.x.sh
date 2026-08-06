@@ -29,23 +29,29 @@ if [ $? -eq 1 ]; then
     # if [ "$3" = "Auto Detect" ]; then
     #     yes | $home/$2-$4
     # else
-        yes | $home/$2-$4 --path "$3"
-    # fi
-    if [ $? -eq 126 ]; then
-        echo "-title-|-Wrong Install Script Used??"
-        echo  "-error"
-    else
-        if [ -f $3/HAT ]; then
-            echo  "-title-|-Complete!"
-            echo  "-finish"
-            echo "$3" > $home/path 
-            echo $4 > $home/version
-            mkdir $3/Mods
-            echo "-hat-|-$4"
-        else
-            echo  "-title-|-HAT installation failed; Check logs"
+    if [ -f "$3/FEZ" ]; then
+            yes | $home/$2-$4 --path "$3"
+        # fi
+        if [ $? -eq 126 ]; then
+            echo "-title-|-Wrong Install Script Used??"
             echo  "-error"
+        else
+            if [ -f $3/HAT ]; then
+                echo  "-title-|-Complete!"
+                echo  "-finish"
+                echo "$3" > $home/path 
+                echo $4 > $home/version
+                mkdir $3/Mods
+                echo "-hat-|-$4"
+            else
+                echo  "-title-|-HAT installation failed; Check logs"
+                echo  "-error"
+            fi
         fi
+    
+    else
+        echo  "-title-|-FEZ Not Found At PATH"
+        echo  "-error"
     fi
 else
     echo !! MONO NOT FOUND !! Please install a version of mono
