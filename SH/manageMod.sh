@@ -30,7 +30,7 @@ if [ -d $home ]; then
         echo  "-finish"
     elif [ $3 = "enable" ]; then
         sed -i "/$2/d" ./ignorelist.txt
-        echo "-title-|-disabled $2"
+        echo "-title-|-enabled $2"
         echo  "-finish"
     else
         echo failed
