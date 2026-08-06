@@ -17,7 +17,7 @@
 
         scrollbar-color: #c8bfd8 #0e0718;
     }
-    .textin {
+    input {
         background-color:#2a203a;
         color:#c8bfd8;
         border-style: solid;
@@ -27,6 +27,10 @@
         max-width: 400px;
         width:100%;
         font-family:pix;
+    }input:hover{
+        background-color:rgb(36, 25, 53);
+        border-color: #3b2f52;
+
     }
     button{
         background-color:#2a203a;
@@ -40,9 +44,14 @@
         outline:none;
 
     }
+    button:hover{
+        background-color:rgb(36, 25, 53);
+        border-color: #3b2f52;
+
+    }
     button:active{
         background-color:#1d142b;
-        border-color:#160f22;
+        border-color: #322747;
 
     }
     .active{
@@ -62,6 +71,10 @@
         border-color: #322747;
         border-radius: 5px;
         outline:none;
+
+    }select:hover{
+        background-color:rgb(36, 25, 53);
+        border-color: #3b2f52;
 
     }
     p{
@@ -132,6 +145,25 @@
     .title{
         height:25px
     }
+
+    footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #0e0718;
+        text-align: center;
+    }
+    a{
+        color:#7d60ff
+    }
+    a:hover{
+        color:#4d3f88
+
+    }
+    .rest{
+        height:100%
+    }
 </style>
 <!-- <h1 id="h">HARDHAT</h1> -->
 <img class="title" src="./assets/titlelogo2.png">
@@ -183,7 +215,9 @@
     </div>
 </div>
 
-<!-- <p id="curl" class="log">curl log:</p> -->
+    <footer>
+        <p>HARDHAT made by <a href="https://github.com/loglot">loglot</a></p>
+    </footer>
 </body>
 <script src="./JS/version.js"></script><br>
 <script src="./JS/mods.js"></script><br>
