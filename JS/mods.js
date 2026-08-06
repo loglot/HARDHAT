@@ -3,6 +3,7 @@ var mods
 var pagemod=document.getElementById("modflex")
 var mme =document.getElementById("modmanage")
 var mm =document.getElementById("modman")
+var mr =document.getElementById("modrefresh")
 var md =document.getElementById("moddown")
 
 function installmod(url,fname,mod){
@@ -49,8 +50,10 @@ function populateMod(namne){// skrew it, this typo is canon now
 }
 async function mod(){
     const versions = await fetch("https://gamebanana.com/apiv12/Game/9985/Subfeed")
+    pagemod.innerHTML=""
     if(!versions.ok){
         throw new Error("Could Not Fetch Mods")
+        pagemod.innerHTML="<h1 class='warn'>Could Not Fetch Mods</h1>"
     }else{
         var obj= await versions.json()
         var list=obj._aRecords
@@ -81,6 +84,15 @@ async function mod(){
         }
     }
 }
+function refresh(){
+    mme.innerHTML=""
+
+    window.electronAPI.exec(['./SH/find.sh',[]])
+}
+mr.addEventListener("click",(e)=>{
+    mod()
+    refresh()
+})
 mm.addEventListener("click",(e)=>{
     md.classList.remove("active");
     mm.classList.add("active");

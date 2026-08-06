@@ -12,6 +12,7 @@
         background-color:#150d20;
         color:hsl(262, 24%, 80%);
         font-family:pix;
+        user-select: none;
     }
     :root{
 
@@ -27,6 +28,7 @@
         max-width: 400px;
         width:100%;
         font-family:pix;
+        user-select: text;
     }input:hover{
         background-color:rgb(36, 25, 53);
         border-color: #3b2f52;
@@ -43,6 +45,7 @@
         font-size:large;
         outline:none;
         user-select: none;
+        cursor: pointer;
 
     }
     button:hover{
@@ -73,14 +76,24 @@
         border-radius: 5px;
         outline:none;
         user-select: none;
+        cursor: pointer;
 
     }select:hover{
         background-color:rgb(36, 25, 53);
         border-color: #3b2f52;
 
     }
-    p{
+    p, h1, h2, h3, h4{
         white-space: pre-line; 
+        user-select: text;
+    }
+    header h3, footer p{
+        user-select: none;
+        color:#635a74;
+    }
+    .mod p, .mod h2{
+        user-select: none;
+
     }
     .hidden{
         display:none;
@@ -140,10 +153,14 @@
     .file{
         width:100%-10px;
         background-color: #0e0718;
-        justify-content:space-between;
         margin:5px;
         padding:5px;
 	align-items:center;
+        justify-content:space-between;
+    }
+    .space{
+
+        justify-content:space-between;
     }
     .title{
         height:25px
@@ -270,8 +287,13 @@
 <div class = "mods hidden" id="pagemo">
     <h1 class="warn" id="nins">HAT Not Installed</h1>
     <div id="modpage" class="hidden">
-        <button id="modman">Manage</button>
-        <button id="moddown" class="active">Download</button>
+        <div class="flex space">
+            <div>
+                <button id="modman">Manage</button>
+                <button id="moddown" class="active">Download</button>
+            </div>
+            <button id="modrefresh">Refresh</button>
+        </div>
         <div class="flex wrap hidden" id="modflex"></div>
         <div class="hidden" id="modmanage">
         </div>
