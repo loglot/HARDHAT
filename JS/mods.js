@@ -33,15 +33,15 @@ function populateMod(namne){// skrew it, this typo is canon now
                             "${namne}", "remove"
                         )'>uninstall</button>
                     <!-- <button>disable</button> -->
-                    ${namne.split(".")[1]=="zip"?
+                    ${namne.split(".").pop()=="zip"?
 
                     `<button onclick='manage(
                             "${namne}", "unzip"
                         )'>unzip</button>` : 
-
+                        namne.split(".").length==1 ?
                     `<button onclick='manage(
                             "${namne}", "unpack"
-                        )'>unpack</button>`
+                        )'>unpack</button>`:''
                     }
                 </div>
             </div>
