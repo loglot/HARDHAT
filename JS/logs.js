@@ -21,7 +21,6 @@ window.electronAPI.onLog((text) => {
     for(let i in split){
         var parsed=split[i].split("-|-")
         console.log(split[i])
-console.log(logstat.innerHTML)
         switch(parsed[0]){
             case("-title"):
                 logstat.innerHTML= parsed[1]
@@ -57,6 +56,9 @@ console.log(logstat.innerHTML)
                 break
             case("-MOD"):
                 populateMod(parsed[1])
+                break
+            case("-MODPACK"):
+                populateModpack(parsed[1])
                 break
             case("-DISABLE"):
                 disableMod(parsed[1])

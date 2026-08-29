@@ -27,5 +27,6 @@ else
         echo "-hat-|-$version"
         cat $path/Mods/ignorelist.txt | sed 's/^/-DISABLE-|-/'
         ls -I "*list.txt" $path/Mods -1 | sed 's/^/-MOD-|-/'
+        ls $home/modpacks | sed 's/^/-MODPACK-|-/'
     fi
 fi

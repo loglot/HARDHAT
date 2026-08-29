@@ -1,4 +1,5 @@
 <body>
+<link rel="stylesheet" href="./LIB/swal-min.css">
 <style>
     @font-face {
         font-family: "pix";
@@ -14,6 +15,7 @@
         font-family:pix;
         user-select: none;
         overflow-y: scroll;
+        width:calc(100vw - 31px)
     }
     :root{
 
@@ -232,6 +234,20 @@
         max-width: 600px;
         width:100%;
     }
+    .chip{
+        background-color: #090411;
+        max-width: 300px;
+        max-height:50px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 48px;
+        line-height: 50px;
+        text-align: center;
+        padding:10px
+    }
 </style>
 <!-- <h1 id="h">HARDHAT</h1> -->
  <header>
@@ -297,6 +313,11 @@
         </div>
         <div class="flex wrap hidden" id="modflex"></div>
         <div class="hidden" id="modmanage">
+            <div id="modslist"></div>
+            <div class="chip flex wrap space">
+                <button id="mps">Save Modpack</button>
+                <button id="mpl">Load Modpack</button>
+            </div>
         </div>
     </div>
 </div>
@@ -305,9 +326,12 @@
         <p>HARDHAT made by <a href="https://github.com/loglot">loglot</a></p>
     </footer>
 </body>
-<script src="./JS/version.js"></script><br>
-<script src="./JS/mods.js"></script><br>
-<script src="./JS/HAT.js"></script><br>
-<script src="./JS/logs.js"></script><br>
-<script src="./JS/navigation.js"></script><br>
-<script src="./JS/handle.js"></script><br>
+<br><br><br><br><br><br>
+<script src="./LIB/swal-min.js"></script>
+<script src="./JS/version.js"></script>
+<script src="./JS/mods.js"></script>
+<script src="./JS/HAT.js"></script>
+<script src="./JS/logs.js"></script>
+<script src="./JS/navigation.js"></script>
+<script src="./JS/modpacks.js"></script>
+<script src="./JS/handle.js"></script>

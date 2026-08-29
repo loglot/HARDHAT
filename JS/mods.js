@@ -2,6 +2,7 @@
 var mods
 var pagemod=document.getElementById("modflex")
 var mme =document.getElementById("modmanage")
+var mls = document.getElementById("modslist")
 var mm =document.getElementById("modman")
 var mr =document.getElementById("modrefresh")
 var md =document.getElementById("moddown")
@@ -51,7 +52,7 @@ function populateMod(namne){// skrew it, this typo is canon now
     namne=namne.replaceAll("/","")
     console.log(disabled.includes(namne), disabled)
     var modgone=disabled.includes(namne)
-    mme.insertAdjacentHTML("beforeend",`
+    mls.insertAdjacentHTML("beforeend",`
 
             <div class="file flex MOD-${namne.replaceAll(" ","")}">
                 <h2${
@@ -125,7 +126,7 @@ async function mod(){
     }
 }
 function refresh(){
-    mme.innerHTML=""
+    mls.innerHTML=""
     disabled=[]
     window.electronAPI.exec(['./SH/find.sh',[]])
 }
