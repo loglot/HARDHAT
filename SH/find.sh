@@ -29,7 +29,16 @@ else
         ls -I "*list.txt" $path/Mods -1 | sed 's/^/-MOD-|-/'
         rm -R $home/modpacks/NEW
         mkdir $home/modpacks/NEW
-        ls $home/modpacks | sed 's/^/-MODPACK-|-/'
+
+        # ls $home/modpacks | sed 's/^/-MODPACK-|-/'
+        for i in $home/modpacks/* ; do
+            if test -d "$i" ; then
+                NAME=$(basename $i)
+                COUNT=$(ls -1 -I "*list.txt" $i | wc -l)
+                echo "-MODPACK-|-$NAME-|-$COUNT"
+                # echo "Doing somthing to $i"
+            fi
+        done
 
     fi
 fi

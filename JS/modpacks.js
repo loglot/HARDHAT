@@ -1,58 +1,53 @@
 
 var mps =document.getElementById("mps")
 var mpl =document.getElementById("mpl")
+var modpacks =document.getElementById("modpackslist")
 
 var modpackList={}
 
-function mpSave(){
-  Swal.fire({
-    title: 'Save',
-    theme: 'dark',
-    input: "text",
-  showCancelButton: true,
-  }).then((result) => {
-    console.log(result)
-    if (result.isConfirmed){
-      if(result.value==""){
-        window.electronAPI.exec(['./SH/title.sh',[`Modpack not saved; no name given`,"-error"]])
-        return
-      }
-      window.electronAPI.exec(['./SH/save.sh',[result.value,installpath]])
-      return
-    }
-    window.electronAPI.exec(['./SH/title.sh',[`Modpack not saved; canceled`,"-error"]])
-  });
-
+function mpMan(name,command){
+  window.electronAPI.exec(["./SH/"+command,[name,installpath]])
+  refresh()
+  if(command=="load.sh"){
+    openmodpage()
+  }
 }
-function mpLoad(){
-  Swal.fire({
-    title: 'Load',
-    input: "select",
-    theme: 'dark',
-  showCancelButton: true,
-    inputOptions: modpackList,
-  }).then((result) => {
-    console.log(result)
-    if (result.isConfirmed){
-      if(result.value==""){
-        window.electronAPI.exec(['./SH/title.sh',[`Modpack not loaded; no name given`,"-error"]])
-        return
-      }
-      window.electronAPI.exec(['./SH/load.sh',[result.value,installpath]])
-      refresh()
-      return
-    }
-    window.electronAPI.exec(['./SH/title.sh',[`Modpack not loaded; canceled`,"-error"]])
-  });
+function populateModpack(namne,count){
+  // modpackList[name]=name
+  // console.log(modpackList)
+    modpacks.insertAdjacentHTML("beforeend",`
 
+            <div class="file flex MODPACK-${namne.replaceAll(" ","")}">
+                <div class="flex">
+                  <h2>${namne}</h2>
+                  <h2 style="color:#635a74; margin-left:20px;">Mods:${count}</h2>  
+                </div>
+                <div style="height=100%">
+                  <button class="warn" 
+                    onclick='mpMan("${namne}","delmp.sh")'
+                  >delete</button>
+                  <button
+                    onclick='mpMan("${namne}","load.sh")'
+                  >load</button>
+                </div>
+            </div>
+    `)
 }
-function populateModpack(name){
-  modpackList[name]=name
-  console.log(modpackList)
+function openmodpage(){
+
+  modpacks.style.display="none";
+  mls.style.display="block"
+  mps.classList.add("active");
+  mpl.classList.remove("active");
 }
 mps.addEventListener("click",(e)=>{
-  mpSave()
+  // mpSave()
+  openmodpage()
 })
 mpl.addEventListener("click",(e)=>{
-  mpLoad()
+  // mpLoad()
+  mls.style.display="none";
+  modpacks.style.display="block"
+  mpl.classList.add("active");
+  mps.classList.remove("active");
 })

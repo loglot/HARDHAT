@@ -58,7 +58,7 @@ window.electronAPI.onLog((text) => {
                 populateMod(parsed[1])
                 break
             case("-MODPACK"):
-                populateModpack(parsed[1])
+                populateModpack(parsed[1],parsed[2])
                 break
             case("-DISABLE"):
                 disableMod(parsed[1])

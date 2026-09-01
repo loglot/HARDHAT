@@ -61,7 +61,7 @@ function populateMod(namne){// skrew it, this typo is canon now
                         ""
                     }>${namne}</h2>
                 <div style="height:100%; ">
-                    <button onclick='manage(
+                    <button class="warn" onclick='manage(
                             "${namne}", "remove"
                         )'>uninstall</button>
 
@@ -127,6 +127,7 @@ async function mod(){
 }
 function refresh(){
     mls.innerHTML=""
+    modpacks.innerHTML=""
     disabled=[]
     window.electronAPI.exec(['./SH/find.sh',[]])
 }
