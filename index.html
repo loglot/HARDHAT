@@ -236,7 +236,7 @@
     }
     .chip{
         background-color: #090411;
-        max-width: 300px;
+        /* max-width: 300px; */
         max-height:50px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
@@ -244,7 +244,7 @@
         left: 50%;
         transform: translateX(-50%);
         bottom: 48px;
-        line-height: 50px;
+        /* line-height: 50px; */
         text-align: center;
         padding:10px
     }
@@ -314,9 +314,9 @@
         <div class="flex wrap hidden" id="modflex"></div>
         <div class="hidden" id="modmanage">
             <div id="modslist"></div>
-            <div class="chip flex wrap space">
-                <button id="mps">Save Modpack</button>
-                <button id="mpl">Load Modpack</button>
+            <div class="chip ">
+                <button id="mps" class="active">Mods</button>
+                <button id="mpl">Modpacks</button>
             </div>
         </div>
     </div>

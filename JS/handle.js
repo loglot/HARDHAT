@@ -11,10 +11,10 @@ function feedback(){
     if(running) logstat.append(".")
 }
 FEZ.addEventListener("click",(e)=>{
-    window.electronAPI.exec([path.value+'/FEZ',[]])
+    window.electronAPI.exec(["./SH/run.sh",[path.value+'/FEZ', "FEZ"]])
 })
 HAT.addEventListener("click",(e)=>{
-    window.electronAPI.exec([path.value+'/HAT',[]])
+    window.electronAPI.exec(["./SH/run.sh",[path.value+'/HAT', "HAT"]])
 })
 
 
