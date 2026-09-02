@@ -1,5 +1,4 @@
 <body>
-<link rel="stylesheet" href="./LIB/swal-min.css">
 <style>
     @font-face {
         font-family: "pix";
@@ -138,6 +137,7 @@
         border-color: #1d152d;
         border-radius: 5px;
         text-align: center;
+        
     }
     .modimg{
         width:100%;
@@ -158,8 +158,9 @@
         background-color: #0e0718;
         margin:5px;
         padding:5px;
-	align-items:center;
+	    align-items:center;
         justify-content:space-between;
+        border-radius: 5px;
     }
     .space{
 
@@ -234,6 +235,14 @@
         max-width: 600px;
         width:100%;
     }
+    .filehold{
+        max-width: 600px;
+        width:100%-10px;
+        background-color: #090411;
+        margin:auto;
+        padding:5px;
+        border-radius: 5px;
+    }
     .chip{
         background-color: #090411;
         /* max-width: 300px; */
@@ -247,6 +256,20 @@
         /* line-height: 50px; */
         text-align: center;
         padding:10px
+    }
+    .tin2{
+        max-width: 200px;
+    }
+    .savemp{
+        margin:auto;
+        max-width: 300px;
+        width: 100%-10px;
+        background-color: #090411;
+        text-align: center;
+        padding:1px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 10px;
     }
 </style>
 <!-- <h1 id="h">HARDHAT</h1> -->
@@ -270,7 +293,7 @@
     <div class="center">
         <div class="fit">
             <label for="FEZ PATH">FEZ Game Path:<br></label>
-            <input class="textin" id="path" type="text" name="FEZ PATH" value="Auto Detect">
+            <input class="textin" id="path" type="text" name="FEZ PATH" value="loading...">
 
             <select id="versions">
                 <option value="/new">Latest</option>
@@ -313,8 +336,15 @@
         </div>
         <div class="flex wrap hidden" id="modflex"></div>
         <div class="hidden" id="modmanage">
-            <div id="modslist"></div>
-            <div id="modpackslist" class="hidden"></div>
+            <div id="modslist" class="filehold" style="margin-top: 10px;"></div>
+            <div id="modpacks" class="hidden">
+                <div class="savemp">
+                    <h2>Save Modpack</h2>
+                    <input class="textin tin2" id="mpn" type="text" name="ModpackName" placeholder="Modpack Name">
+                    <button>Save</button>
+                </div>
+                <div id="modpackslist" class="filehold"></div>
+            </div>
             <div class="chip ">
                 <button id="mps" class="active">Mods</button>
                 <button id="mpl">Modpacks</button>
@@ -328,7 +358,6 @@
     </footer>
 </body>
 <br><br><br><br><br><br>
-<script src="./LIB/swal-min.js"></script>
 <script src="./JS/version.js"></script>
 <script src="./JS/mods.js"></script>
 <script src="./JS/HAT.js"></script>

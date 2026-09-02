@@ -2,6 +2,7 @@
 var mps =document.getElementById("mps")
 var mpl =document.getElementById("mpl")
 var modpacks =document.getElementById("modpackslist")
+var modpackspar =document.getElementById("modpacks")
 
 var modpackList={}
 
@@ -35,7 +36,7 @@ function populateModpack(namne,count){
 }
 function openmodpage(){
 
-  modpacks.style.display="none";
+  modpackspar.style.display="none";
   mls.style.display="block"
   mps.classList.add("active");
   mpl.classList.remove("active");
@@ -47,7 +48,7 @@ mps.addEventListener("click",(e)=>{
 mpl.addEventListener("click",(e)=>{
   // mpLoad()
   mls.style.display="none";
-  modpacks.style.display="block"
+  modpackspar.style.display="block"
   mpl.classList.add("active");
   mps.classList.remove("active");
 })
