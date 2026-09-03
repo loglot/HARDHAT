@@ -3,7 +3,8 @@ var mps =document.getElementById("mps")
 var mpl =document.getElementById("mpl")
 var modpacks =document.getElementById("modpackslist")
 var modpackspar =document.getElementById("modpacks")
-
+var mpname = document.getElementById("mpname")
+var mpsave = document.getElementById("mpsave")
 var modpackList={}
 
 function mpMan(name,command){
@@ -51,4 +52,13 @@ mpl.addEventListener("click",(e)=>{
   modpackspar.style.display="block"
   mpl.classList.add("active");
   mps.classList.remove("active");
+})
+mpsave.addEventListener("click",(e)=>{
+  var name = mpname.value 
+  if(name!=""){
+    mpMan(name, "save.sh")
+  }else{
+    echo("-title-|-Modpack Not Saved; Empty Name")
+    echo("-error")
+  }
 })
