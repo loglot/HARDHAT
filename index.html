@@ -297,6 +297,9 @@
         top:0;
         left:0;
     }
+    .transparentbg{
+        background-color: #00000000;
+    }
     .front{
         z-index: 10; 
         position: relative;
@@ -336,7 +339,8 @@
     </div>
 </div>
 <div class = "installer" id="pagein">
-    <div class="center">
+    <canvas class="canvas transparentbg" id="can1"></canvas>
+    <div class="center front">
         <div class="fit">
             <label for="FEZ PATH">FEZ Game Path:<br></label>
             <input class="textin" id="path" type="text" name="FEZ PATH" value="loading...">
@@ -364,12 +368,16 @@
 <br><br><br><br><br><br>
 </div>
 <div class = "launcher hidden" id="pagela">
-    <button class="launch" id="FEZ">
-        <img class="" src="./assets/FEZ.png"><p>unmodified game</p>
-    </button>
-    <button class="launch" id="HAT">
-        <img class="" src="./assets/HAT.png"><p>play with mods</p>
-    </button>
+    <canvas class="canvas transparentbg" id="can2"></canvas>
+    <div class="front">
+        <button class="launch" id="FEZ">
+            <img class="" src="./assets/FEZ.png"><p>unmodified game</p>
+        </button>
+        <button class="launch" id="HAT">
+            <img class="" src="./assets/HAT.png"><p>play with mods</p>
+        </button>
+
+    </div>
 </div>
 <div class = "mods hidden" id="pagemo">
     <h1 class="warn" id="nins">HAT Not Installed</h1>
