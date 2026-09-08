@@ -14,7 +14,8 @@
         font-family:pix;
         user-select: none;
         overflow-y: scroll;
-        width:calc(100vw - 31px)
+        width:calc(100vw - 31px);
+        /* min-height: ; */
     }
     :root{
 
@@ -199,7 +200,7 @@
         width: 100%;
         padding-top: 20px;
         height:80px;
-        z-index: 10;
+        z-index: 11;
         user-select: none;
     }
     body{
@@ -242,6 +243,8 @@
         margin:auto;
         padding:5px;
         border-radius: 5px;
+        border-style: solid;
+        border-color: #1d152d;
     }
     .chip{
         background-color: #090411;
@@ -262,6 +265,7 @@
     }
     .savemp{
         margin:auto;
+        position: relative;
         max-width: 300px;
         width: 100%-10px;
         background-color: #090411;
@@ -270,24 +274,66 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         margin-top: 10px;
+        z-index: 5;
+        border-style: solid;
+        border-bottom-style:none;
+        border-color: #1d152d;
+        top:3px;
+    }
+    .modpage{
+        /* background-color: #010008; */
+        width:calc(100% - 2px);
+        min-height:stretch;
+        position: relative;
+        left:-10px;
+        top:-10px;
+        padding:10px;
+    }
+    .canvas{
+        background-color: #010008; 
+        position:fixed;
+        width:100vw;
+        height:100vh;
+        top:0;
+        left:0;
+    }
+    .front{
+        z-index: 10; 
+        position: relative;
+    }
+    .logbg{
+        background-color: #150d20;
+        position: absolute;
+        left:-10px;
+        top:-10px;
+        width:calc(100% + 18px);
+        height:calc(100% + 10px);
+        z-index: 1;
     }
 </style>
 <!-- <h1 id="h">HARDHAT</h1> -->
- <header>
-    <img class="title" src="./assets/titlelogo2.png">
-    <h3>The HAT Installer</h3>
+<div class="front">
 
- </header>
-<div>
-    <h1 id="logstat">idle</h1>
-    <button id="logs">show logs</button>
-    <p id="log" class="log hidden">[empty]</p>
-    
-</div>
-<div class="nav">
-    <button id="installation" class="active">installation</button>
-    <button id="mods">mods</button>
-    <button id="launch">launch</button>
+    <header>
+        <img class="title" src="./assets/titlelogo2.png">
+        <h3>The HAT Installer</h3>
+
+    </header>
+    <div>
+        <div class="logbg"></div>
+        <div class="front">
+            <h1 id="logstat">idle</h1>
+            <button id="logs">show logs</button>
+            <p id="log" class="log hidden">[empty]</p>
+
+        </div>
+        
+    </div>
+    <div class="nav front" style="z-index: 10;">
+        <button id="installation" class="active">installation</button>
+        <button id="mods">mods</button>
+        <button id="launch">launch</button>
+    </div>
 </div>
 <div class = "installer" id="pagein">
     <div class="center">
@@ -315,6 +361,7 @@
 
     </div>
 
+<br><br><br><br><br><br>
 </div>
 <div class = "launcher hidden" id="pagela">
     <button class="launch" id="FEZ">
@@ -326,30 +373,35 @@
 </div>
 <div class = "mods hidden" id="pagemo">
     <h1 class="warn" id="nins">HAT Not Installed</h1>
-    <div id="modpage" class="hidden">
-        <div class="flex space">
-            <div>
-                <button id="modman">Manage</button>
-                <button id="moddown" class="active">Download</button>
-            </div>
-            <button id="modrefresh">Refresh</button>
-        </div>
-        <div class="flex wrap hidden" id="modflex"></div>
-        <div class="hidden" id="modmanage">
-            <div id="modslist" class="filehold" style="margin-top: 10px;"></div>
-            <div id="modpacks" class="hidden">
-                <div class="savemp">
-                    <h2>Save Modpack</h2>
-                    <input class="textin tin2" id="mpname" type="text" name="ModpackName" placeholder="Modpack Name">
-                    <button id="mpsave">Save</button>
+        <canvas class="canvas" id="paralax"></canvas>
+        <div id="modpage" class="hidden modpage">
+            <div style="z-index: 10;">
+            <div class="flex space">
+                <div>
+                    <button id="modman">Manage</button>
+                    <button id="moddown" class="active">Download</button>
                 </div>
-                <div id="modpackslist" class="filehold"></div>
+                <button id="modrefresh">Refresh</button>
             </div>
-            <div class="chip ">
-                <button id="mps" class="active">Mods</button>
-                <button id="mpl">Modpacks</button>
+            <div class="flex wrap hidden" id="modflex"></div>
+            <div class="hidden" id="modmanage">
+                <div id="modslist" class="filehold" style="margin-top: 10px;"></div>
+                <div id="modpacks" class="hidden">
+                    <div class="savemp">
+                        <h2>Save Modpack</h2>
+                        <input class="textin tin2" id="mpname" type="text" name="ModpackName" placeholder="Modpack Name">
+                        <button id="mpsave">Save</button>
+                    </div>
+                    <div id="modpackslist" class="filehold"></div>
+                </div>
+                <div class="chip ">
+                    <button id="mps" class="active">Mods</button>
+                    <button id="mpl">Modpacks</button>
+                </div>
             </div>
+
         </div>
+<br><br><br><br><br><br>
     </div>
 </div>
 
@@ -357,8 +409,8 @@
         <p>HARDHAT made by <a href="https://github.com/loglot">loglot</a></p>
     </footer>
 </body>
-<br><br><br><br><br><br>
 <script src="./JS/pre.js"></script>
+<script src="./JS/paralax.js"></script>
 <script src="./JS/version.js"></script>
 <script src="./JS/mods.js"></script>
 <script src="./JS/HAT.js"></script>
