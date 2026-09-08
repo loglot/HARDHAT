@@ -21,7 +21,7 @@ function populateModpack(namne,count){
 
             <div class="file flex MODPACK-${namne.replaceAll(" ","")}">
                 <div class="flex">
-                  <h2>${namne}</h2>
+                  <h2 style="margin-left:5px;">${namne}</h2>
                   <h2 style="color:#635a74; margin-left:20px;">Mods:${count}</h2>  
                 </div>
                 <div style="height=100%">

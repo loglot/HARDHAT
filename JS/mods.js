@@ -7,6 +7,7 @@ var mm =document.getElementById("modman")
 var mr =document.getElementById("modrefresh")
 var md =document.getElementById("moddown")
 var disabled=[]
+var modcount=0
 function disableMod(file){
     disabled.push(file.replaceAll("\r", ""))
 }
@@ -32,7 +33,7 @@ function manage(name,type){
             console.warn(remove)
         for (let i = 0; i<remove.length;i++){
             disabled.push(name)
-            remove[i].children[0].style.color="#635a74"
+            remove[i].children[0].children[1].style.color="#635a74"
             remove[i].children[1].children[1].onclick=function() { manage(name, "enable") }
             remove[i].children[1].children[1].innerHTML=`enable`
         }
@@ -40,8 +41,8 @@ function manage(name,type){
     }
     if(type=="enable"){
         for (let i = 0; i<remove.length;i++){
-            disabled.push(name)
-            remove[i].children[0].style.color="#c8bfd8"
+            disabled = disabled.filter(e => e !== name)
+            remove[i].children[0].children[1].style.color="#c8bfd8"
             remove[i].children[1].children[1].onclick=function() { manage(name, "disable") }
             remove[i].children[1].children[1].innerHTML=`disable`
         }
@@ -49,17 +50,21 @@ function manage(name,type){
     }
 }
 function populateMod(namne){// skrew it, this typo is canon now
+    modcount+=1
     namne=namne.replaceAll("/","")
     console.log(disabled.includes(namne), disabled)
     var modgone=disabled.includes(namne)
     mls.insertAdjacentHTML("beforeend",`
 
             <div class="file flex MOD-${namne.replaceAll(" ","")}">
-                <h2${
+                <div class="flex">
+                <h2 style="margin-left:5px; color:#635a74;">${modcount}: </h2>
+                <h2 style="margin-left:20px;${
                     modgone?
-                        ` style="color:#635a74;"`:
-                        ""
+                        `color:#635a74;"`:
+                        `"`
                     }>${namne}</h2>
+                </div>
                 <div style="height:100%; ">
                     <button class="warn" onclick='manage(
                             "${namne}", "remove"
@@ -126,6 +131,7 @@ async function mod(){
     }
 }
 function refresh(){
+    modcount=0
     mls.innerHTML=""
     modpacks.innerHTML=""
     disabled=[]
