@@ -29,6 +29,7 @@ window.electronAPI.onLog((text) => {
                 running=true
                 // start.style.display="none"
                 logstat.style.color="#c8bfd8"
+                tarspeed=15
                 break
             case("-clear"):
                 log.innerHTML=""
@@ -37,16 +38,19 @@ window.electronAPI.onLog((text) => {
                 logstat.style.color="#e1aaaa"
                 start.style.display="block"
                 running=false
+                tarspeed=1
                 break
             case("-finish"):
                 logstat.style.color="#aae1aa"
                 start.style.display="block"
                 running=false
+                tarspeed=1
                 break
             case("-stop"):
                 // logstat.style.color="#aae1aa"
                 start.style.display="block"
                 running=false
+                tarspeed=1
                 break
             case("-path"):
                 // logstat.style.color="#aae1aa"

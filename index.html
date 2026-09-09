@@ -179,6 +179,7 @@
         background-color: #090411;
         text-align: center;
         user-select: none;
+        z-index:11;
     }
     a{
         color:#7d60ff
@@ -233,8 +234,9 @@
         justify-content: center;
     }
     .fit{
-        max-width: 600px;
+        max-width: 500px;
         width:100%;
+        
     }
     .filehold{
         max-width: 800px;
@@ -300,6 +302,12 @@
     .transparentbg{
         background-color: #00000000;
     }
+    .GRAVE{
+        background-color: #071c1f;
+    }
+    .DRAPES{
+        background-color: #0b0113;
+    }
     .front{
         z-index: 10; 
         position: relative;
@@ -312,6 +320,15 @@
         width:calc(100% + 18px);
         height:calc(100% + 10px);
         z-index: 1;
+    }
+    .installchip{
+        background-color: #090411;
+        position: relative;
+        padding:20px;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: #1d152d;
+        top:50px
     }
 </style>
 <!-- <h1 id="h">HARDHAT</h1> -->
@@ -339,9 +356,9 @@
     </div>
 </div>
 <div class = "installer" id="pagein">
-    <canvas class="canvas transparentbg" id="can1"></canvas>
+    <canvas class="canvas GRAVE" id="grave"></canvas>
     <div class="center front">
-        <div class="fit">
+        <div class="fit installchip">
             <label for="FEZ PATH">FEZ Game Path:<br></label>
             <input class="textin" id="path" type="text" name="FEZ PATH" value="loading...">
 
@@ -368,7 +385,7 @@
 <br><br><br><br><br><br>
 </div>
 <div class = "launcher hidden" id="pagela">
-    <canvas class="canvas transparentbg" id="can2"></canvas>
+    <canvas class="canvas DRAPES" id="drapes"></canvas>
     <div class="front">
         <button class="launch" id="FEZ">
             <img class="" src="./assets/FEZ.png"><p>unmodified game</p>
