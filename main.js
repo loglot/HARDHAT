@@ -6,8 +6,10 @@ const { spawn } = require('child_process');
 var window
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 600,
+    height: 279,
+    minWidth: 600,
+    minHeight: 300,//
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     }

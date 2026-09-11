@@ -1,3 +1,4 @@
+<meta charset="UTF-8">
 <body>
 <style>
     @font-face {
@@ -21,7 +22,8 @@
 
         scrollbar-color: #c8bfd8 #0e0718;
     }
-    input {
+    /* input  */
+    .textbox{
         background-color:#2a203a;
         color:#c8bfd8;
         border-style: solid;
@@ -32,7 +34,7 @@
         width:100%;
         font-family:pix;
         user-select: text;
-    }input:hover{
+    }.textbox:hover{
         background-color:rgb(36, 25, 53);
         border-color: #3b2f52;
 
@@ -308,6 +310,9 @@
     .DRAPES{
         background-color: #0b0113;
     }
+    .cave{
+        background-color: #1b1441;
+    }
     .front{
         z-index: 10; 
         position: relative;
@@ -330,6 +335,29 @@
         border-color: #1d152d;
         top:50px
     }
+    .back{
+        z-index: 1;
+        position: relative;
+    }
+    .checkbox{
+        background-color: #150d20;
+        color:#150d20;
+        width:25px;
+        height:25px;
+        font-family: sans-serif;
+    }
+    .checkbox:hover{
+        background-color:rgb(36, 25, 53) !important;
+        color:rgb(36, 25, 53) !important;
+        border-color: #3b2f52 !important;
+
+    }
+    .checkbox:active{
+        background-color:#1d142b !important;
+        color:#1d142b !important;
+        border-color: #322747 !important;
+
+    }
 </style>
 <!-- <h1 id="h">HARDHAT</h1> -->
 <div class="front">
@@ -351,16 +379,17 @@
     </div>
     <div class="nav front" style="z-index: 10;">
         <button id="installation" class="active">installation</button>
+        <button id="settings">settings</button>
         <button id="mods">mods</button>
         <button id="launch">launch</button>
     </div>
 </div>
-<div class = "installer" id="pagein">
+<div class = "installer back" id="pagein">
     <canvas class="canvas GRAVE" id="grave"></canvas>
     <div class="center front">
         <div class="fit installchip">
             <label for="FEZ PATH">FEZ Game Path:<br></label>
-            <input class="textin" id="path" type="text" name="FEZ PATH" value="loading...">
+            <input class="textin textbox" id="path" type="text" name="FEZ PATH" value="loading...">
 
             <select id="versions">
                 <option value="/new">Latest</option>
@@ -384,7 +413,7 @@
 
 <br><br><br><br><br><br>
 </div>
-<div class = "launcher hidden" id="pagela">
+<div class = "launcher hidden back" id="pagela">
     <canvas class="canvas DRAPES" id="drapes"></canvas>
     <div class="front">
         <button class="launch" id="FEZ">
@@ -396,11 +425,11 @@
 
     </div>
 </div>
-<div class = "mods hidden" id="pagemo">
+<div class = "mods hidden back" id="pagemo">
     <h1 class="warn" id="nins">HAT Not Installed</h1>
-        <canvas class="canvas" id="paralax"></canvas>
-        <div id="modpage" class="hidden modpage">
-            <div style="z-index: 10;">
+    <canvas class="canvas" id="paralax"></canvas>
+    <div id="modpage" class="hidden modpage">
+        <div style="z-index: 10;">
             <div class="flex space">
                 <div>
                     <button id="modman">Manage</button>
@@ -414,7 +443,7 @@
                 <div id="modpacks" class="hidden">
                     <div class="savemp">
                         <h2>Save Modpack</h2>
-                        <input class="textin tin2" id="mpname" type="text" name="ModpackName" placeholder="Modpack Name">
+                        <input class="textin tin2 textbox" id="mpname" type="text" name="ModpackName" placeholder="Modpack Name">
                         <button id="mpsave">Save</button>
                     </div>
                     <div id="modpackslist" class="filehold"></div>
@@ -424,10 +453,22 @@
                     <button id="mpl">Modpacks</button>
                 </div>
             </div>
-
         </div>
 <br><br><br><br><br><br>
     </div>
+</div>
+<div class = "settings hidden" id="pagese">
+        <canvas class="canvas cave" id="cave"></canvas>
+        <div class="front center">
+            <div class="fit installchip">
+                <h2>SETTINGS;</h2>
+                <div id="settingslist">
+
+                </div>
+            </div>
+
+        </div>
+<br><br><br><br><br><br><br><br>
 </div>
 
     <footer>
@@ -436,6 +477,7 @@
 </body>
 <script src="./JS/pre.js"></script>
 <script src="./JS/paralax.js"></script>
+<script src="./JS/settings.js"></script>
 <script src="./JS/version.js"></script>
 <script src="./JS/mods.js"></script>
 <script src="./JS/HAT.js"></script>

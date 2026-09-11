@@ -6,6 +6,7 @@ var mls = document.getElementById("modslist")
 var mm =document.getElementById("modman")
 var mr =document.getElementById("modrefresh")
 var md =document.getElementById("moddown")
+var refreshCount=0
 var disabled=[]
 var modcount=0
 function disableMod(file){
@@ -130,12 +131,31 @@ async function mod(){
         }
     }
 }
-function refresh(){
+async function refresh(){
     modcount=0
     mls.innerHTML=""
     modpacks.innerHTML=""
     disabled=[]
+    refreshCount++
     window.electronAPI.exec(['./SH/find.sh',[]])
+    pagemod.style.display="none"
+    mme.style.display="none"
+    mm.classList.remove("active");
+    md.classList.remove("active");
+    await sleep(100)
+    if(modcount>0){
+        md.classList.remove("active");
+        mm.classList.add("active");
+        pagemod.style.display="none"
+        mme.style.display="block"
+    }
+    if(modcount==0){
+        mm.classList.remove("active");
+        md.classList.add("active");
+        pagemod.style.display="flex"
+        mme.style.display="none"
+    }
+    console.log(refreshCount,modcount)
 }
 mr.addEventListener("click",(e)=>{
     refresh()
