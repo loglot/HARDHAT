@@ -23,9 +23,11 @@ fi
 if [ $path = "null" ]; then
     echo "-path-|-FEZ Not Detected"
 else
-    if [ -f $path/HAT ]; then
+    if [[ -f $path/HAT.dll || -f $path/HAT ]]; then
         echo "-hat-|-$version"
         cat $path/Mods/ignorelist.txt | sed 's/^/-DISABLE-|-/'
+        echo
+        echo
         ls -I "*list.txt" $path/Mods -1 | sed 's/^/-MOD-|-/'
         rm -R $home/modpacks/!EMPTY!
         mkdir $home/modpacks/!EMPTY!

@@ -1,5 +1,6 @@
 
 var start=document.getElementById("exec")
+var stopp=document.getElementById("execun")
 function install(){
 //   window.electronAPI.write(path.value,"test file")
     console.log(path.value)
@@ -12,6 +13,14 @@ function install(){
     ]])
     // start.style.display="none"
 }
+function uninstall(){
+    window.electronAPI.exec(['./SH/uninstall.sh', [
+        path.value
+    ]])
+}
 start.addEventListener("click",(e)=>{
     install()
+})
+stopp.addEventListener("click",(e)=>{
+    uninstall()
 })

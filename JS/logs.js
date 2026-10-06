@@ -36,19 +36,19 @@ window.electronAPI.onLog((text) => {
                 break
             case("-error"):
                 logstat.style.color="#e1aaaa"
-                start.style.display="block"
+                start.style.display="inline-block"
                 running=false
                 tarspeed=1
                 break
             case("-finish"):
                 logstat.style.color="#aae1aa"
-                start.style.display="block"
+                start.style.display="inline-block"
                 running=false
                 tarspeed=1
                 break
             case("-stop"):
                 // logstat.style.color="#aae1aa"
-                start.style.display="block"
+                start.style.display="inline-block"
                 running=false
                 tarspeed=1
                 break
@@ -74,13 +74,30 @@ window.electronAPI.onLog((text) => {
                 disableMod(parsed[1])
                 break
             case("-hat"):
-                con.style.display="block"
-                con.innerHTML=`HAT ${parsed[1]} Already Installed`
-                start.innerHTML="reinstall"
-                installpath=path.value
-                nins.style.display="none"
-                mp.style.display="block"
-                curver=parsed[1]
+                var ver=parsed[1]
+                if(ver=="nil"){
+                    con.style.display="none"
+                    con.innerHTML=`HAT ${ver} Already Installed`
+                    start.innerHTML="Install"
+                    stopp.style.display="none"
+                    installpath=path.value
+                    nins.style.display="block"
+                    mp.style.display="none"
+                    HAT.classList.add("hidden");
+                    curver="undef"
+                }else{
+                
+                    con.style.display="block"
+                    con.innerHTML=`HAT ${ver} Already Installed`
+                    start.innerHTML="reinstall"
+                    stopp.style.display="inline-block"
+                    installpath=path.value
+                    nins.style.display="none"
+                    mp.style.display="block"
+                    HAT.classList.remove("hidden");
+                    curver=ver
+
+                }
                 break
             default:
                 if(i!=0){

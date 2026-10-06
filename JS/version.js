@@ -24,7 +24,7 @@ async function ver(){
             makeVer(versionNumber(i),i)
         }
     }
-    start.style.display="block"
+    start.style.display="inline-block"
 }
 function versionNumber(i){
     return (releases[i].html_url

@@ -395,17 +395,18 @@
                 <option value="/new">Latest</option>
             </select>
             <div id="depricated" class="hidden">
-                <h2 class="warn">WARNING: Pre 2.0 builds are Depricated</h2>
+                <h2 class="warn">WARNING: Pre 2.0.0 builds are Depricated</h2>
                 <p class="warn"> some mods don't support newer builds, but depricated builds are experimental in this installer</p>
                 <!-- <label for="sos">SteamOS: </label>
                 <input type="checkbox" name="sos" value=false>       -->
             </div>
 
             <div id="unsupported" class="hidden">
-                <h2 class="error">PRE 2.0 BUILDS UNSUPPORTED CURRENTLY</h2>
+                <h2 class="error">PRE 2.0.0 BUILDS UNSUPPORTED CURRENTLY</h2>
             </div><br><br>
             <h1 id="confirm" class="hidden" style="color:#aae1aa">HAT Already Installed</h1>
-            <button id="exec" class="final hidden">Install!</button>
+            <button id="exec" class="final hidden">Install</button>
+            <button id="execun" class="final hidden">Unstall</button>
             
         </div>
 
@@ -419,7 +420,7 @@
         <button class="launch" id="FEZ">
             <img class="" src="./assets/FEZ.png"><p>unmodified game</p>
         </button>
-        <button class="launch" id="HAT">
+        <button class="launch hidden" id="HAT">
             <img class="" src="./assets/HAT.png"><p>play with mods</p>
         </button>
 

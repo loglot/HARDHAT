@@ -17,12 +17,12 @@ if [ $? -eq 127 ]; then
     missdeps+=("mono")
     check=0
 fi
-zip
+zip -h
 if [ $? -eq 127 ]; then
     missdeps+=("zip")
     check=0
 fi
-unzip
+unzip -h
 if [ $? -eq 127 ]; then
     missdeps+=("unzip")
     check=0
@@ -33,12 +33,12 @@ if [ $check = 1 ]; then
     echo  "-clear"
     echo  "-start"
     echo  "-title-|-Downloading Installer"
-    if [ -f $home/$2-$4 ]; then
-        echo Already cached $home/$2-$4, skipping download
+    if [ -f "$home/installers/$2-$4" ]; then
+        echo Already cached $home/installers/$2-$4, skipping download
     else
-        wget -P $home/ $1
-        chmod +x $home/$2
-        mv $home/$2 $home/$2-$4
+        wget -P $home/installers/ $1
+        chmod +x $home/installers/$2
+        mv $home/installers/$2 $home/installers/$2-$4
     fi
         echo
         echo
@@ -48,30 +48,37 @@ if [ $check = 1 ]; then
     # else
     if [ -f "$3/FEZ" ]; then
 
-        if [ -f $home/backup.zip ] then
+        if [ -f $home/backup.zip ]; then
             echo  "-title-|-Restoring Backup"
             cd $3
+            if [ -d $3/Mods ]; then
+                cp -Rv Mods $home/modbak
+            fi
+            
             rm -r *
             unzip $home/backup.zip
+            if [ -d $home/modbak ]; then
+                cp -Rv $home/modbak Mods
+            fi
             sleep .5
 
         else
             if [ -d $3/Mods ]; then
                 echo  "-title-|-Unable to Back FEZ up, Already Modified?"
-                sleep .5
+                sleep 1
                 echo  "-title-|-Results Unstable, as we are Modifying an Already Modified Game"
-                sleep .5
+                sleep 1
             else
                 echo  "-title-|-Backing up FEZ"
                 cd $3 
-                zip -R $home/backup.zip *
+                zip -r $home/backup.zip *
             fi
         fi
         
         echo  "-title-|-Installing HAT"
 
 
-            yes | $home/$2-$4 --path "$3"
+            yes | $home/installers/$2-$4 --path "$3"
         # fi
         if [ $? -eq 126 ]; then
             echo "-title-|-Wrong Install Script Used??"
