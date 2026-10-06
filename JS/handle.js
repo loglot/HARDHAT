@@ -11,10 +11,24 @@ function feedback(){
     if(running) logstat.append(".")
 }
 FEZ.addEventListener("click",(e)=>{
-    window.electronAPI.exec(["./SH/run.sh",[path.value+'/FEZ', "FEZ"]])
+    var exec=[]
+    if(compareVer(curver, "v3.0.0")){
+        exec=[path.value+"/Original", "./FEZ"]
+    }else{
+        exec=[path.value, "./FEZ"]
+
+    }
+    window.electronAPI.exec(["./SH/run.sh",[...exec, "FEZ"]])
 })
 HAT.addEventListener("click",(e)=>{
-    window.electronAPI.exec(["./SH/run.sh",[path.value+'/HAT', "HAT"]])
+    var exec=[]
+    if(compareVer(curver, "v3.0.0")){
+        exec=[path.value, "./FEZ"]
+    }else{
+        exec=[path.value, "./HAT"]
+
+    }
+    window.electronAPI.exec(["./SH/run.sh",[...exec, "HAT"]])
 })
 
 

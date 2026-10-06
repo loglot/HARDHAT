@@ -9,5 +9,5 @@ if [ $1 = "change" ]; then
     cat $home/settings
 fi
 if [ $1 = "read" ]; then
-    cat $home/settings | sed 's/^/-SETTING-|-/'
+    nl -s "-|-" $home/settings | sed 's/^/-SETTING-|-/'
 fi

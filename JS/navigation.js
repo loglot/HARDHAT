@@ -7,7 +7,6 @@ var pagein=document.getElementById("pagein")
 var pagemo=document.getElementById("pagemo")
 var pagela=document.getElementById("pagela")
 var pagese=document.getElementById("pagese")
-var page="ins"
 
 
 function select(sel, sel2=title, pag){

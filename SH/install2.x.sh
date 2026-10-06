@@ -9,8 +9,26 @@ echo
 echo
 
 
+check=1
+missdeps=()
+
 mono
-if [ $? -eq 1 ]; then
+if [ $? -eq 127 ]; then
+    missdeps+=("mono")
+    check=0
+fi
+zip
+if [ $? -eq 127 ]; then
+    missdeps+=("zip")
+    check=0
+fi
+unzip
+if [ $? -eq 127 ]; then
+    missdeps+=("unzip")
+    check=0
+fi
+
+if [ $check = 1 ]; then
 
     echo  "-clear"
     echo  "-start"
@@ -25,11 +43,34 @@ if [ $? -eq 1 ]; then
         echo
         echo
     sleep .5
-    echo  "-title-|-Installing HAT"
     # if [ "$3" = "Auto Detect" ]; then
     #     yes | $home/$2-$4
     # else
     if [ -f "$3/FEZ" ]; then
+
+        if [ -f $home/backup.zip ] then
+            echo  "-title-|-Restoring Backup"
+            cd $3
+            rm -r *
+            unzip $home/backup.zip
+            sleep .5
+
+        else
+            if [ -d $3/Mods ]; then
+                echo  "-title-|-Unable to Back FEZ up, Already Modified?"
+                sleep .5
+                echo  "-title-|-Results Unstable, as we are Modifying an Already Modified Game"
+                sleep .5
+            else
+                echo  "-title-|-Backing up FEZ"
+                cd $3 
+                zip -R $home/backup.zip *
+            fi
+        fi
+        
+        echo  "-title-|-Installing HAT"
+
+
             yes | $home/$2-$4 --path "$3"
         # fi
         if [ $? -eq 126 ]; then
@@ -54,7 +95,7 @@ if [ $? -eq 1 ]; then
         echo  "-error"
     fi
 else
-    echo !! MONO NOT FOUND !! Please install a version of mono
-    echo  "-title-|-Missing Dependancy: mono"
+    echo "!! DEPENDANCIES NOT FOUND !! Please install ${missdeps[@]} "
+    echo  "-title-|-Missing Dependancies: ${missdeps[@]}"
     echo  "-error"
 fi

@@ -14,7 +14,8 @@ if [ "$FEZ" = 0 ]; then
 fi
 echo "HAT $HAT"
 echo "FEZ $FEZ"
-echo "-title-|-Running $2"
+echo "-title-|-Running $3"
 echo  "-finish"
-$1
+cd $1
+$2
 exit 0

@@ -64,6 +64,12 @@ window.electronAPI.onLog((text) => {
             case("-MODPACK"):
                 populateModpack(parsed[1],parsed[2])
                 break
+            case("-SETTING"):
+                console.log(parsed[1])
+                if(parsed.length==3){
+                    setSetting(parsed[1])
+                }
+                break
             case("-DISABLE"):
                 disableMod(parsed[1])
                 break
@@ -74,6 +80,7 @@ window.electronAPI.onLog((text) => {
                 installpath=path.value
                 nins.style.display="none"
                 mp.style.display="block"
+                curver=parsed[1]
                 break
             default:
                 if(i!=0){

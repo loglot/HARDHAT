@@ -3,6 +3,7 @@ var releases
 var verSel=document.getElementById("versions")
 var depricated=document.getElementById("depricated")
 var unsupported=document.getElementById("unsupported")
+var curver="0.0.0"
 async function ver(){
     const versions = await fetch("https://api.github.com/repos/FEZModding/HAT/releases")
     if(!versions.ok){

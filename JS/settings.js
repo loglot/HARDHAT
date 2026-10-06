@@ -33,11 +33,28 @@ function setcheck(button, res){
     button.style.color=c
     button.style.borderColor=bc
 }
-function flipset(vari){
-    set[vari]=!set[vari]
+function flipset(vari,it="flip"){
+    if(it=="flip"){
+        set[vari]=!set[vari]
+    }else{
+        set[vari]=it
+    }
     return (set[vari])
 }
 function save(vari, id){
     window.electronAPI.exec(["./SH/settings.sh",["change",id,vari]])
 
 }
+function setSetting(strnum,strval){
+    var num = parseInt(strnum)
+    var val=""
+    if(strval=="true"){
+        val=true
+    }else if(strval=="false"){
+        val=false
+    }else{
+        val=strval
+    }
+    set[settings[val][1][1]]=val
+
+} 

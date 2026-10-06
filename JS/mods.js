@@ -138,6 +138,7 @@ async function refresh(){
     disabled=[]
     refreshCount++
     window.electronAPI.exec(['./SH/find.sh',[]])
+    window.electronAPI.exec(["./SH/settings.sh",["read"]])
     pagemod.style.display="none"
     mme.style.display="none"
     mm.classList.remove("active");

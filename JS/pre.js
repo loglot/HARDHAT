@@ -7,3 +7,4 @@ var set={
     redmotion:false,
     perform:false
 }
+var page="ins"
