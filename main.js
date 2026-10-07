@@ -21,7 +21,8 @@ const createWindow = () => {
 }
 function execute(e,command, log="normal"){
     // console.log(command)
-    const item=spawn(...command)
+    
+    const item=spawn("bash",[command[0],...command[1]] )
     // const item=spawn('wget', ['-v','https://github.com/FEZModding/HAT/releases/download/v2.0.1/HATinstaller-linux-x64'])
     item.stdout.on('data',(e)=>{
         // console.log(e)

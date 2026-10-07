@@ -12,24 +12,23 @@ echo
 
 
 check=1
-missdeps=()
+    missdeps=()
 
-mono
-if [ $? -eq 127 ]; then
-    missdeps+=("mono")
-    check=0
-fi
-zip -h
-if [ $? -eq 127 ]; then
-    missdeps+=("zip")
-    check=0
-fi
-unzip -h
-if [ $? -eq 127 ]; then
-    missdeps+=("unzip")
-    check=0
-fi
-
+    mono
+    if [ $? -eq 127 ]; then
+        missdeps+=("mono")
+        check=0
+    fi
+    zip -h
+    if [ $? -eq 127 ]; then
+        missdeps+=("zip")
+        check=0
+    fi
+    unzip -h
+    if [ $? -eq 127 ]; then
+        missdeps+=("unzip")
+        check=0
+    fi
 if [ $check = 1 ]; then
 
     echo  "-clear"

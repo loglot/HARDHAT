@@ -7,6 +7,9 @@ hat=$(cat $home/path)
 version=$(cat $home/version)
 echo
 path="null"
+
+
+
 if [ -d "$hat" ]; then
     echo "-path-|-$hat"
     echo "path found at HAT Install Directory: $hat"
@@ -32,6 +35,7 @@ else
         echo
         ls -I "*list.txt" $path/Mods -1 | sed 's/^/-MOD-|-/'
         rm -R $home/modpacks/!EMPTY!
+        mkdir $home/modpacks
         mkdir $home/modpacks/!EMPTY!
 
         # ls $home/modpacks | sed 's/^/-MODPACK-|-/'
