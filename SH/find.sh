@@ -1,3 +1,5 @@
+#!/bin/bash
+
 steam=~/.local/share/Steam/steamapps/common/FEZ
 gog="~/GOG Games/FEZ"
 home=~/.hardhat
@@ -8,7 +10,7 @@ path="null"
 if [ -d "$hat" ]; then
     echo "-path-|-$hat"
     echo "path found at HAT Install Directory: $hat"
-    path=$steam
+    path=$hat
 elif [ -d "$steam" ]; then
     echo "-path-|-$steam"
     echo "path found at $steam"

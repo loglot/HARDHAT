@@ -1,3 +1,5 @@
+#!/bin/bash
+
 home=~/.hardhat/
 if [ -f "${home}/settings" ]; then
     echo settings exist

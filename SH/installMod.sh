@@ -1,3 +1,5 @@
+#!/bin/bash
+
 
 home="$3/Mods"
 echo "$1 $2 $3 $4"

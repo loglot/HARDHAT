@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo  "-clear"
 echo "-title-|-deleting $1"
 PTH=~/.hardhat/modpacks/"$1"/

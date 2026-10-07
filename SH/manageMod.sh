@@ -1,3 +1,5 @@
+#!/bin/bash
+
 
 home="$1/Mods"
 if [ -d $home ]; then
