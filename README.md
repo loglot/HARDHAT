@@ -1,5 +1,5 @@
 # HARDHAT
-a graphical [HAT](https://github.com/FEZModding/HAT) installer
+a graphical [HAT](https://github.com/FEZModding/HAT) mod manager
 
 
 # Usage
