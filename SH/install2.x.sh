@@ -59,7 +59,7 @@ if [ $check = 1 ]; then
             rm -r *
             unzip $home/backup.zip
             if [ -d $home/modbak ]; then
-                cp -Rv $home/modbak Mods
+                cp -Rv $home/modbak ./
             fi
             sleep .5
 

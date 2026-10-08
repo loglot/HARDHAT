@@ -6,5 +6,5 @@ mv out/HARDHAT-Linux-x64/hardhat-linux-x64/resources/app/SH out/HARDHAT-Linux-x6
 echo cd ./hardhat-linux-x64 > out/HARDHAT-Linux-x64/HARDHAT.sh
 echo ./hardhat >> out/HARDHAT-Linux-x64/HARDHAT.sh
 chmod +x out/HARDHAT-Linux-x64/HARDHAT.sh
-cd out/HARDHAT-Linux-x64
-zip -r ../HARDHAT-Linux-x64.zip *
+cd out/
+zip -r ../HARDHAT-Linux-x64.zip HARDHAT-Linux-x64/*

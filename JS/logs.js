@@ -89,7 +89,7 @@ window.electronAPI.onLog((text) => {
                 
                     con.style.display="block"
                     con.innerHTML=`HAT ${ver} Already Installed`
-                    start.innerHTML="reinstall"
+                    start.innerHTML="Reinstall HAT"
                     stopp.style.display="inline-block"
                     installpath=path.value
                     nins.style.display="none"
